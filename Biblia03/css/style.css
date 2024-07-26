@@ -1,0 +1,260 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'FonteLogo';
+    src: url("../fonts/bubblegum-sans-regular.otf");
+}
+
+* {
+    font-size: 100%;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.pagina-inicial  {
+    width: 95%;
+    margin: auto; 
+}
+
+/* CABEÇALHO */ 
+
+.logo {
+    width: 56px;
+    height: 42px;
+    float: right;
+    background: url("../imagens/logo-mobile.png") center center/56px no-repeat;
+    font-size: 0;
+    margin-top: 1px;
+}
+
+.logo-index {
+    width: 56px;
+    height: 42px;  
+    background: url("../imagens/logo-mobile.png") center center/30px no-repeat;
+    font-size: 0;
+    margin: 0px auto 42px;
+    text-align: center;
+}
+
+.logo-index-intro {
+    width: 56px;
+    height: 42px;  
+    background: url("../imagens/logo-mobile.png") center center/30px no-repeat;
+    font-size: 0;
+    margin: 0px auto 42px;
+    text-align: center;
+}
+
+h1.logo-index  {
+    margin-top: 30px;
+    text-align: center;
+
+}
+
+body {
+    background-color: rgb(243, 240, 240);
+    text-align: justify;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.cabecalho{
+    padding-top: 10px;
+    margin-top: 25px;
+    margin-right: 2.5%;
+}
+
+.img-ico {
+    margin-left: 2.5%; 
+}
+
+.titulo {
+    text-align: center;
+    font-size: 1.2em;
+    color: #000;
+    text-shadow: #ff0000 0.05em 0em 0em;
+    border: 1px solid rgba(255,255,255,.3); 
+    width: 95%;  
+    margin: auto;
+}
+
+
+.intro h1 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #000;
+    text-shadow: #fff 0.2em 0.1em 0.2em;
+}
+
+#intro-home-ts {
+    text-align: center;
+    font-size: 1em;
+    color: #000;
+    text-shadow: #fff 0.2em 0.1em 0.2em;
+    /*float: left;*/
+}
+
+.intro p {
+    text-align: center;
+    color: #fff;
+    text-shadow: rgb(0, 0, 0) 0.2em 0.1em 0.2em;
+    font-size: .8em;
+}
+
+.at {
+    color: #000;
+    text-shadow: #fff 0.2em 0.1em 0.2em;
+    margin-top: 34px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.nt {
+    color: #000;
+    text-shadow: #fff 0.2em 0.1em 0.2em;
+    margin-top: 34px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/*GERAL*/
+
+h2 {
+    color: #ff0000;
+    text-shadow: #000 0em 0.1em;
+    padding: 1.0em 0em 0.5em 0em;
+}
+
+h3 {
+    color: #ff0000;
+    text-shadow: #000 0em 0.1em;
+    padding: 1.2em 0em 0.5em 0em;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+p span {
+    color: #0427fc;
+    font-weight: 9px;
+}
+
+a {
+    color: #000;
+}
+
+
+/*##### TABELA #####*/
+table {
+    width: 100%;
+    margin: auto;
+    font-size: .85em;
+}
+
+#lista {
+    border-radius: 0;
+}
+th, td {
+    text-align: center; 
+}
+
+#tbl-radius td{
+    border-radius: 42px 12px;
+    padding: 0;
+}
+
+#tbl-ajuste td {
+    padding: 4px;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
+tr:nth-child(odd) {
+   background-color: #fff;
+}
+/*##### FIM DA TABELA #####*/
+
+
+/*PRÓXIMO CAPITULO*/
+.proximo {
+    font-stretch: condensed;
+    text-transform: lowercase;
+    font-size: 1em;
+    font-style: italic;
+    color: #0427fc;
+    text-shadow: #ff0000 0em 0.03em;
+}
+
+a:hover {
+    color: #ff0000;
+    text-shadow: #000 0.1em 0em 0em;
+}
+
+footer {
+    text-align: center;
+    padding: 42px;
+}
+
+.mls {
+    font-family: 'FonteLogo';
+}
+
+span.mls {
+    color: #ff0000;
+    font-family: 'FonteLogo';
+}
+
+
+/*LINK ATIVO*/
+
+table tbody td a.ativo {
+    color: #ff0000;
+}
+
+.top {
+    width: 38px;
+    height: 42px;
+    float: right;
+    background: url("../imagens/top2.png") center center/30px no-repeat;
+    font-size: 0;
+    margin-bottom: 20px;
+    margin-right: 0%;
+}
+
+/*MEDIA*/
+@media screen and (min-width: 560px) {
+    .logo {
+        width: 214px;
+        background: url("../imagens/logo-56.png") center center/178px no-repeat;
+        margin-top: 3px;
+    }
+
+    .logo-index {
+        width: 214px;
+        background: url("../imagens/logo-56.png") center center/178px no-repeat;
+        margin-top: 12px;
+    }
+
+    .logo-index-intro {
+        width: 214px;
+        background: url("../imagens/logo-56.png") center center/128px no-repeat;
+        margin-top: 12px;
+    }
+
+    footer.top {
+        width: 100%;
+        background: url("../imagens/top2.png") center center/100% no-repeat;
+        font-size: 0;       
+    }
+}
+

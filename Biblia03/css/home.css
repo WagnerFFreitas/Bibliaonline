@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+#degrade {
+    background: -webkit-gradient(linear, left top, right top, from(#1c82e4), to(#d2eaff)) no-repeat;
+}
+
+header {
+    width: 80%;
+    margin: auto;
+}
+
+.cabecalho-home{
+    margin-top: 15px;
+    padding-top: 5px;
+}
+
+
+/*##### TABELA #####*/
+.degrade-tbl {
+    background: -webkit-gradient(linear, left top, right top, from(#d2eaff), to(#1c82e4)) no-repeat;
+}
+
+a {
+    color: #000;
+    /*text-shadow: rgb(255, 255, 255) 0.2em 0.1em 0.2em;*/
+}
+
+caption {
+    padding-bottom: 3px;
+}
+
+table, td {         
+    border: .5px solid rgba(0,0,0,0.5);
+}
+
+th, td {
+    font-size: 1.2em;
+    padding: 8px;
+    text-align: center;            
+}
+
+tr:nth-child(even) {
+    background: -webkit-gradient(linear, left top, right top, from(#1c82e4), to(#d2eaff)) no-repeat;
+}
+
+tr:nth-child(odd) {
+    background: -webkit-gradient(linear, left top, right top, from(#d2eaff), to(#1c82e4)) no-repeat;
+}
+
+.alt {
+    visibility: hidden;
+}
+
+#alt-pesquisa {
+    visibility: hidden;
+
+}
+
+@media screen and (max-width: 480px) {
+    td {
+        display: block;
+        text-align: center;
+    }
+    td:before {
+        content: attr(data-th);
+        text-align: center;
+    }
+    .alt{
+        visibility: visible;
+        margin: auto;
+        width: 90%;
+    }
+    footer {
+    text-align: center;
+    padding: 42px;
+}
+}
+
+@media screen and (max-width: 620px) {
+    td {
+        display: block;
+        text-align: center;
+    }
+    td:before {
+        content: attr(data-th);
+        text-align: center;
+    }
+    .alt{
+        visibility: visible;
+        margin: auto;
+        width: 80%;
+        font-size: .9em;
+    }
+
+    #alt-pesquisa{
+        visibility: visible;
+        font-style:italic; 
+        font-size: 0;
+        margin: auto;
+        width: 80%;
+        padding-top: 20px;
+}   
+/*##### FIM DA TABELA #####*/
+
+footer {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 42px;
+    clear: both;
+}
+
+.mls {
+    font-family: 'FonteLogo';
+}

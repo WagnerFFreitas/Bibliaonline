@@ -1,0 +1,153 @@
+body {
+    font-family: sans-serif;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: lightgray;
+  }
+  
+  .header-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header-menu {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .header-menu a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .header-menu a:hover {
+    background-color: #ddd;
+  }
+  
+  .content {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .sidebar {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .sidebar-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-list li {
+    margin-bottom: 5px;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .main-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  ------------------
+
+
+  .input-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .input-group input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .input-group button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .book-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .book-item:hover {
+    background-color: #ddd;
+  }
+
+  .book-name {
+    font-weight: bold;
+  }
+
+  .book-details {
+    display: flex;
+    gap: 5px;
+  }
+
+  .book-details span {
+    font-size: 12px;
+  }
+
+  .footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+  }
