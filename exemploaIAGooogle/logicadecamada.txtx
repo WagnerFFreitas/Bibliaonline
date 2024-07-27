@@ -1,0 +1,146 @@
+Você está certo! Essas observações importantes são cruciais para criar um aplicativo web robusto e seguro. Vou te mostrar como implementá-las no backend (Node.js e Express.js) e como escrever testes para garantir a qualidade do código:
+
+1. Implemente a Lógica de Cada Funcionalidade:
+
+Buscar Versículos:
+
+app.get('/api/versiculo/:livro/:capitulo/:versiculo', (req, res) => {
+  const { livro, capitulo, versiculo } = req.params;
+  const query = 'SELECT texto FROM versiculos WHERE livro_id = ? AND capitulo_id = ? AND numero = ?';
+  db.query(query, [livro, capitulo, versiculo], (err, result) => {
+    if (err) {
+      res.status(500).send('Erro ao buscar versículo');
+    } else if (result.length === 0) {
+      res.status(404).send('Versículo não encontrado');
+    } else {
+      res.json({ texto: result[0].texto });
+    }
+  });
+});
+content_copy
+Use code with caution.
+Js
+
+Salvar Marcadores:
+
+app.post('/api/marcadores', authenticateToken, (req, res) => {
+  const { livro, capitulo, versiculo } = req.body;
+  const userId = req.userId; // Obtido do token JWT
+  const query = 'INSERT INTO marcadores (usuario_id, livro_id, capitulo_id, versiculo_id) VALUES (?, ?, ?, ?)';
+  db.query(query, [userId, livro, capitulo, versiculo], (err, result) => {
+    if (err) {
+      res.status(500).send('Erro ao salvar marcador');
+    } else {
+      res.json({ message: 'Marcador salvo com sucesso' });
+    }
+  });
+});
+content_copy
+Use code with caution.
+Js
+
+Gerar URLs de Compartilhamento:
+
+app.get('/api/compartilhar/:livro/:capitulo/:versiculo', (req, res) => {
+  const { livro, capitulo, versiculo } = req.params;
+  const url = `https://www.seusite.com/versiculo/${livro}/${capitulo}/${versiculo}`; // Adapte a URL do seu site
+  res.json({ url });
+});
+content_copy
+Use code with caution.
+Js
+
+2. Verifique a Segurança da API:
+
+Proteja contra SQL Injection:
+
+Utilize consultas parametrizadas para evitar que código malicioso seja injetado nas consultas SQL.
+
+Exemplo:
+
+db.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, result) => { ... }); // Usando parâmetros
+content_copy
+Use code with caution.
+Js
+
+Proteja contra Cross-Site Scripting (XSS):
+
+Utilize bibliotecas como dompurify para limpar as entradas de dados do frontend antes de renderizá-las na página.
+
+Escape caracteres especiais e HTML antes de exibir dados do usuário.
+
+Utilize o cabeçalho Content-Security-Policy para restringir o conteúdo que pode ser carregado na sua aplicação.
+
+3. Implemente a Validação de Dados:
+
+Utilize bibliotecas como express-validator para validar os dados enviados pelo frontend:
+
+app.post('/api/registrar', [
+  body('nome').notEmpty().withMessage('Nome é obrigatório'),
+  body('email').isEmail().normalizeEmail().withMessage('Email inválido'),
+  body('senha').isLength({ min: 6 }).withMessage('Senha deve ter pelo menos 6 caracteres'),
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+  // Se os dados forem válidos, prossiga com o registro do usuário
+  // ...
+});
+content_copy
+Use code with caution.
+Js
+
+4. Teste seu Aplicativo:
+
+Testes Unitários:
+
+Utilize o Jest para escrever testes unitários para as funções do backend:
+
+const request = require('supertest');
+const app = require('../app');
+
+describe('GET /api/versiculo', () => {
+  it('Deve retornar o texto do versículo correto', async () => {
+    const response = await request(app)
+      .get('/api/versiculo/Genesis/1/1')
+      .expect(200);
+    expect(response.body.texto).toEqual('No princípio, criou Deus os céus e a terra.');
+  });
+});
+content_copy
+Use code with caution.
+Js
+
+Testes de Integração:
+
+Utilize ferramentas como supertest para simular requisições HTTP para sua API e verificar se o frontend, backend e base de dados estão interagindo corretamente.
+
+Teste cenários complexos, como o fluxo de login, registro e busca de versículos.
+
+5. Documente seu Código:
+
+Utilize comentários para explicar o funcionamento do código:
+
+// Função para gerar um token JWT
+const generateToken = (userId) => {
+  // ...
+};
+
+// Rota para salvar marcadores
+app.post('/api/marcadores', authenticateToken, (req, res) => {
+  // ...
+});
+content_copy
+Use code with caution.
+Js
+
+Use ferramentas de documentação como JSDoc para gerar documentação automática do seu código.
+
+Lembre-se:
+
+Esses exemplos de código são apenas um ponto de partida. Você precisará adaptá-los e expandir o código para implementar todas as funcionalidades do seu aplicativo.
+
+É fundamental dedicar tempo para testar e documentar o seu código para garantir a qualidade, segurança e manutenibilidade do seu aplicativo.
+
+Espero que estas dicas te ajudem a construir um aplicativo web da Bíblia funcional e seguro!

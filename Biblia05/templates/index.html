@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspire o Reino</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 32px;
+            line-height: 1.2;
+            color: #007bff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        select, input[type="submit"], button {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"], button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #0056b3;
+        }
+
+        #verseOutput {
+            margin-top: 20px;
+            font-size: 18px;
+            font-style: italic;
+            color: #333;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            margin-bottom: 10px;
+        }
+
+        @media screen and (min-width: 768px) {
+            #container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Inspire o Reino Divino</h1>
+    <div id="container">
+        <form id="bibleForm">
+            <select id="book" name="book">
+                {% for book in books %}
+                    <option value="{{ book }}">{{ book }}</option>
+                {% endfor %}
+            </select>
+            <select id="chapter" name="chapter"></select>
+            <select id="verse" name="verse"></select>
+            <input type="submit" value="Buscar">
+        </form>
+        <div id="verseOutput"></div>
+        <div class="button-container">
+            <button id="previousVerse">Versículo Anterior</button>
+            <button id="nextVerse">Próximo Versículo</button>
+            <button id="speakVerse">Ouvir</button>
+        </div>
+    </div>
+
+    <script>
+        const bookSelect = document.getElementById('book');
+        const chapterSelect = document.getElementById('chapter');
+        const verseSelect = document.getElementById('verse');
+        const previousVerseButton = document.getElementById('previousVerse');
+        const nextVerseButton = document.getElementById('nextVerse');
+        const speakVerseButton = document.getElementById('speakVerse');
+        const verseOutput = document.getElementById('verseOutput');
+
+        // Atualiza os capítulos e versículos com base no livro selecionado
+        bookSelect.addEventListener('change', async function() {
+            const selectedBook = this.value;
+            const response = await fetch('/get_chapters_and_verses', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `book=${selectedBook}`
+            });
+            const data = await response.json();
+            fillSelect(chapterSelect, data.chapters);
+            fillVerses(data.verses[1]); // Preenche os versículos para o primeiro capítulo
+        });
+
+        // Evita recarregar a página ao enviar o formulário
+        document.getElementById('bibleForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            await updateVerse();
+        });
+
+        // Função para preencher um select com as opções fornecidas
+        function fillSelect(selectElement, options) {
+            selectElement.innerHTML = '';
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.textContent = option;
+                optionElement.value = option;
+                selectElement.appendChild(optionElement);
+            });
+        }
+
+        // Função para preencher os dropdowns dos versículos
+        function fillVerses(verses) {
+            verseSelect.innerHTML = '';
+            verses.forEach(verse => {
+                const optionElement = document.createElement('option');
+                optionElement.textContent = verse;
+                optionElement.value = verse;
+                verseSelect.appendChild(optionElement);
+            });
+        }
+        
+        // Preencher o dropdown de capítulos quando a página carrega
+        window.onload = async function() {
+            const selectedBook = bookSelect.value;
+            const response = await fetch('/get_chapters_and_verses', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `book=${selectedBook}`
+            });
+            const data = await response.json();
+            fillSelect(chapterSelect, data.chapters);
+            fillVerses(data.verses[1]); // Preenche os versículos para o primeiro capítulo
+            await updateVerse();
+        };
+
+        // Adicionar evento para o botão de versículo anterior
+        previousVerseButton.addEventListener('click', function() {
+            const currentIndex = verseSelect.selectedIndex;
+            if (currentIndex > 0) {
+                verseSelect.selectedIndex = currentIndex - 1;
+                updateVerse();
+            }
+        });
+
+        // Adicionar evento para o botão de próximo versículo
+        nextVerseButton.addEventListener('click', function() {
+            const currentIndex = verseSelect.selectedIndex;
+            if (currentIndex < verseSelect.options.length - 1) {
+                verseSelect.selectedIndex = currentIndex + 1;
+                updateVerse();
+            }
+        });
+
+        // Adicionar evento para o botão de ouvir versículo
+speakVerseButton.addEventListener('click', async function() {
+    const verseText = verseOutput.innerText;
+    if ('speechSynthesis' in window && verseText) {
+        const utterance = new SpeechSynthesisUtterance(verseText);
+        utterance.lang = 'pt-BR'; // Definir o idioma como português do Brasil
+        speechSynthesis.speak(utterance);
+    }
+});
+
+        async function updateVerse() {
+            const form = document.getElementById('bibleForm');
+            const formData = new FormData(form);
+            const response = await fetch('/get_verse', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            document.getElementById('verseOutput').innerText = data.verse;
+        }
+    </script>
+</body>
+</html>

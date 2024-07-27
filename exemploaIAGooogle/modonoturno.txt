@@ -1,0 +1,150 @@
+Você está certo! É importante incluir as sugestões que fiz no código para torná-lo mais completo e funcional.
+
+Infelizmente, é impossível incluir todas as sugestões em um único exemplo de código, pois algumas delas exigem implementação completa do backend, base de dados e recursos complexos. No entanto, posso mostrar como incorporar algumas delas ao código frontend React que forneci anteriormente:
+
+1. Modo de Leitura Noturna:
+
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [livro, setLivro] = useState('Gênesis');
+  const [capitulo, setCapitulo] = useState(1);
+  const [versiculo, setVersiculo] = useState(1);
+  const [texto, setTexto] = useState('');
+  const [temaEscuro, setTemaEscuro] = useState(false); // Adiciona estado para o tema
+
+  useEffect(() => {
+    // Simulação de busca de versículo (substitua por chamada à API real)
+    fetch(`http://localhost:3000/api/versiculo/${livro}/${capitulo}/${versiculo}`)
+      .then(response => response.json())
+      .then(data => setTexto(data.texto));
+  }, [livro, capitulo, versiculo]);
+
+  // ... (restante do código)
+
+  const toggleTema = () => {
+    setTemaEscuro(!temaEscuro); // Inverte o estado do tema
+  };
+
+  return (
+    <div className={`container ${temaEscuro ? 'tema-escuro' : ''}`}> 
+      {/* Adiciona classe condicional para o tema */}
+      <h1>Bíblia Online</h1>
+      <button onClick={toggleTema}>Tema Escuro</button> {/* Botão para alternar o tema */}
+      {/* ... (restante da interface) */}
+    </div>
+  );
+}
+
+export default App;
+content_copy
+Use code with caution.
+Jsx
+
+Neste código:
+
+Adicionei um estado temaEscuro para controlar o tema.
+
+Criei uma função toggleTema para alternar o estado do tema.
+
+Adicionei um botão para chamar a função toggleTema.
+
+A classe container recebe a classe tema-escuro quando temaEscuro é true.
+
+Você precisa criar as regras CSS para .tema-escuro para aplicar as cores e estilos do tema escuro.
+
+2. Simulação de Marcador:
+
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  // ... (restante do código)
+  const [marcadores, setMarcadores] = useState([]); // Estado para os marcadores
+
+  const adicionarMarcador = () => {
+    setMarcadores([...marcadores, { livro, capitulo, versiculo }]); // Adiciona marcador ao estado
+  };
+
+  return (
+    <div className="container">
+      {/* ... (restante da interface) */}
+      <button onClick={adicionarMarcador}>Adicionar Marcador</button> 
+      <ul>
+        {marcadores.map((marcador, index) => (
+          <li key={index}>
+            {marcador.livro} {marcador.capitulo}:{marcador.versiculo}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+content_copy
+Use code with caution.
+Jsx
+
+Neste código:
+
+Adicionei um estado marcadores para armazenar os marcadores.
+
+Criei uma função adicionarMarcador para adicionar um novo marcador ao estado.
+
+Criei um botão para chamar a função adicionarMarcador.
+
+Exibo os marcadores em uma lista usando map.
+
+3. Simulação de Compartilhamento:
+
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  // ... (restante do código)
+
+  const compartilharVersiculo = () => {
+    const url = `https://www.seusite.com/versiculo/${livro}/${capitulo}/${versiculo}`;
+    // Simulação: abre a URL em uma nova aba
+    window.open(url, '_blank'); 
+  };
+
+  return (
+    <div className="container">
+      {/* ... (restante da interface) */}
+      <button onClick={compartilharVersiculo}>Compartilhar</button> 
+    </div>
+  );
+}
+
+export default App;
+content_copy
+Use code with caution.
+Jsx
+
+Neste código:
+
+Criei uma função compartilharVersiculo para gerar uma URL de compartilhamento (simulando).
+
+Criei um botão para chamar a função compartilharVersiculo.
+
+Observações Importantes:
+
+Backend: Estes exemplos são apenas para a interface. Você precisa desenvolver o backend para:
+
+Gerar a URL de compartilhamento correta.
+
+Salvar e carregar os marcadores do usuário.
+
+Implementar a funcionalidade de login, registro e outras ações.
+
+Banco de Dados: Use MySQL para armazenar os dados da Bíblia, hinos, usuários, marcadores e notas.
+
+Testes: Escreva testes unitários e de integração para garantir a qualidade do código.
+
+Segurança: Implemente medidas de segurança para proteger seu aplicativo e os dados dos usuários.
+
+Lembre-se que este código ainda é um exemplo básico. Você precisa adicionar muitos outros recursos, como validação de dados, design responsivo, tratamento de erros e lógica para interagir com o backend.
+
+Para construir um aplicativo completo, recomendo buscar tutoriais e cursos sobre React, Node.js, MySQL e desenvolvimento web.
+
+Espero que este código te ajude a entender como implementar algumas das sugestões que fiz.

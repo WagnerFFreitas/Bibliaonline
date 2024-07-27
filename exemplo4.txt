@@ -4,34 +4,26 @@ Se os topicos estiver duplicado me perdoa e porque fui pensando e escrevendo, cr
 Página inicial com menu de livros, capítulos e versículos
 Sistema de busca por palavras-chave
 Opção de marcadores e notas pessoais
-
-
 2-Funcionalidades:
 Navegação fácil entre livros e capítulos
 Modo de leitura noturna
 Compartilhamento de versículos em redes sociais (sem reproduzir o texto completo)
 Planos de leitura personalizados
-
 3-Design:
 Interface limpa e intuitiva
 Tipografia legível
 Esquema de cores agradável
-
 4-Tecnologias sugeridas:
 Frontend: HTML5, CSS3, JavaScript, mysql
-
 5-Adicionar uma base de dados com o texto real da Bíblia e os hinos da Harpa Cristã
 Implementar a lógica para buscar e exibir o conteúdo correto
-
 6-Adicionar funcionalidades para marcadores e compartilhamento
 Implementar uma busca por palavras-chave
 Adicionar mais recursos como planos de leitura, notas, etc.
-
 7-Interface para selecionar livro, capítulo e versículo
 Botão para alternar entre tema claro e escuro
 Simulação de busca de versículo (sem texto real)
 Simulação de adição de marcador e compartilhamento
-
 8-Backend - frontend
 9-Banco de dados: mysql
 10-Login e registro de usuários
@@ -50,6 +42,7 @@ Simulação de adição de marcador e compartilhamento
 23-Implementar testes unitários e de integração
 Configurar um ambiente de produção (por exemplo, usando PM2 para gerenciar o processo Node.js)
 24-Implementar um sistema de cache para melhorar o desempenho
+
 Gerando respostas para você…
 
 Enviado por Copilot:
