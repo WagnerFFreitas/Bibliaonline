@@ -125,104 +125,8 @@ database/: Scripts para configurar o banco de dados MySQL.
 2. Estrutura do Aplicativo
 Frontend (HTML, CSS, JavaScript):
 
-Página Inicial (index.html):
+rascunho05
 
-html
-Copiar código
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo da Bíblia</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Aplicativo da Bíblia</h1>
-        <nav>
-            <a href="#books">Livros</a>
-            <a href="#search">Buscar</a>
-            <a href="#notes">Notas</a>
-        </nav>
-    </header>
-    <main>
-        <!-- Conteúdo da página inicial -->
-    </main>
-    <footer>
-        <p>&copy; 2024 Aplicativo da Bíblia</p>
-    </footer>
-    <script src="app.js"></script>
-</body>
-</html>
-Estilos (styles.css):
-
-css
-Copiar código
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav a {
-    color: #fff;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
-main {
-    padding: 20px;
-}
-Script JavaScript (app.js):
-
-javascript
-Copiar código
-document.addEventListener('DOMContentLoaded', function() {
-    // Funções para busca, marcadores, etc.
-});
-Backend (Node.js e Express):
-
-Configuração do Servidor (server.js):
-javascript
-Copiar código
-const express = require('express');
-const mysql = require('mysql');
-const app = express();
-const port = 3000;
-
-// Configurar o banco de dados
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'biblia'
-});
-
-db.connect(err => {
-    if (err) throw err;
-    console.log('Conectado ao banco de dados.');
-});
-
-app.use(express.static('frontend'));
-app.use(express.json());
-
-// Rotas
-app.get('/api/versiculos', (req, res) => {
-    // Implementar lógica para buscar versículos
-});
-
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-});
 Banco de Dados (MySQL):
 
 Script para Criar Tabelas (schema.sql):
@@ -289,75 +193,16 @@ Adicione um painel ou modal para adicionar e visualizar marcadores e notas.
 Crie uma interface para associar marcadores e notas a versículos específicos.
 html
 Copiar código
-<!-- Exemplo de modal para adicionar nota -->
-<div id="notaModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Adicionar Nota</h2>
-        <textarea id="notaTexto" rows="4" cols="50"></textarea>
-        <button id="salvarNota">Salvar Nota</button>
-    </div>
-</div>
+
 css
 Copiar código
-/* Estilos para o modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 Backend:
 
 Adicione endpoints para criar, ler e excluir notas e marcadores.
 javascript
 Copiar código
-// Adicionar Nota
-app.post('/api/notas', (req, res) => {
-    const { versiculo_id, texto } = req.body;
-    const sql = 'INSERT INTO notas (versiculo_id, texto) VALUES (?, ?)';
-    db.query(sql, [versiculo_id, texto], (err, result) => {
-        if (err) throw err;
-        res.status(201).send({ id: result.insertId, versiculo_id, texto });
-    });
-});
 
-// Buscar Notas
-app.get('/api/notas/:versiculo_id', (req, res) => {
-    const sql = 'SELECT * FROM notas WHERE versiculo_id = ?';
-    db.query(sql, [req.params.versiculo_id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
 Busca por Palavra-Chave
 Frontend:
 
@@ -373,48 +218,20 @@ Backend:
 Crie uma rota para pesquisar versículos que correspondam à palavra-chave.
 javascript
 Copiar código
-app.get('/api/busca', (req, res) => {
-    const { query } = req.query;
-    const sql = 'SELECT * FROM versiculos WHERE texto LIKE ?';
-    db.query(sql, [`%${query}%`], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
+
 Planos de Leitura
 Frontend:
 
 Ofereça uma interface para que os usuários possam selecionar planos de leitura ou criar planos personalizados.
 html
 Copiar código
-<!-- Exemplo de seção para planos de leitura -->
-<div id="planosLeitura">
-    <h2>Planos de Leitura</h2>
-    <!-- Listar planos de leitura aqui -->
-</div>
+
 Backend:
 
 Adicione endpoints para gerenciar planos de leitura.
 javascript
 Copiar código
-// Criar Plano de Leitura
-app.post('/api/planos', (req, res) => {
-    const { nome, descricao } = req.body;
-    const sql = 'INSERT INTO planos (nome, descricao) VALUES (?, ?)';
-    db.query(sql, [nome, descricao], (err, result) => {
-        if (err) throw err;
-        res.status(201).send({ id: result.insertId, nome, descricao });
-    });
-});
 
-// Buscar Planos de Leitura
-app.get('/api/planos', (req, res) => {
-    const sql = 'SELECT * FROM planos';
-    db.query(sql, (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
 6. Melhorias e Manutenção
 Testes
 Testes Unitários e de Integração:
@@ -422,40 +239,21 @@ Testes Unitários e de Integração:
 Use bibliotecas como Jest ou Mocha para escrever testes unitários e de integração.
 javascript
 Copiar código
-// Exemplo com Jest
-const request = require('supertest');
-const app = require('./server'); // Seu arquivo de servidor
 
-test('GET /api/busca deve retornar versículos', async () => {
-    const response = await request(app).get('/api/busca?query=amor');
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toBeInstanceOf(Array);
-});
 Segurança
 Autenticação e Autorização:
 
 Use bibliotecas como Passport.js para autenticação e autorização.
 javascript
 Copiar código
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 
-passport.use(new LocalStrategy((username, password, done) => {
-    // Lógica de autenticação
-}));
 Proteção de Dados:
 
 Use HTTPS para proteger a comunicação entre o cliente e o servidor.
 Sanitização de Entrada: Proteja contra SQL Injection e XSS.
 javascript
 Copiar código
-// Exemplo de sanitização de entrada
-const sanitizeHtml = require('sanitize-html');
 
-app.post('/api/versiculos', (req, res) => {
-    const texto = sanitizeHtml(req.body.texto);
-    // Salvar texto sanitizado no banco de dados
-});
 7. Ambiente de Produção
 Gerenciamento de Processos:
 
@@ -468,8 +266,7 @@ Cache:
 Implemente um sistema de cache para melhorar o desempenho, como Redis.
 javascript
 Copiar código
-const redis = require('redis');
-const client = redis.createClient();
+
 
 // Usar cache para armazenar resultados de busca
 Se precisar de mais detalhes sobre qualquer uma dessas etapas ou tiver dúvidas específicas, sinta-se à vontade para perguntar!
@@ -548,140 +345,18 @@ Configuração do Servidor (server.js):
 
 javascript
 Copiar código
-const express = require('express');
-const mysql = require('mysql');
-const app = express();
-const port = 3000;
 
-// Configurar o banco de dados
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'biblia'
-});
-
-db.connect(err => {
-    if (err) throw err;
-    console.log('Conectado ao banco de dados.');
-});
-
-app.use(express.static('frontend'));
-app.use(express.json());
-
-// Rota para buscar versículos
-app.get('/api/versiculos/:livro_id/:capitulo_numero', (req, res) => {
-    const { livro_id, capitulo_numero } = req.params;
-    const sql = `
-        SELECT v.numero, v.texto
-        FROM versiculos v
-        INNER JOIN capitulos c ON v.capitulo_id = c.id
-        WHERE c.livro_id = ? AND c.numero = ?
-    `;
-    db.query(sql, [livro_id, capitulo_numero], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
-
-// Rota para buscar livros
-app.get('/api/livros', (req, res) => {
-    const sql = 'SELECT * FROM livros';
-    db.query(sql, (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
-
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-});
 4. Frontend - HTML e JavaScript
 Página Inicial (index.html):
 
 html
 Copiar código
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo da Bíblia</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Aplicativo da Bíblia</h1>
-        <nav>
-            <a href="#livros">Livros</a>
-            <a href="#buscar">Buscar</a>
-            <a href="#notas">Notas</a>
-        </nav>
-    </header>
-    <main>
-        <section id="livros">
-            <h2>Livros da Bíblia</h2>
-            <ul id="listaLivros"></ul>
-        </section>
-        <section id="buscar">
-            <h2>Buscar Versículo</h2>
-            <form id="searchForm">
-                <select id="livroSelect"></select>
-                <input type="number" id="capituloNumero" placeholder="Número do Capítulo">
-                <button type="submit">Buscar</button>
-            </form>
-            <div id="resultadosBusca"></div>
-        </section>
-        <section id="notas">
-            <h2>Notas</h2>
-            <!-- Interface para notas -->
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Aplicativo da Bíblia</p>
-    </footer>
-    <script src="app.js"></script>
-</body>
-</html>
+
 Script JavaScript (app.js):
 
 javascript
 Copiar código
-document.addEventListener('DOMContentLoaded', function() {
-    const livroSelect = document.getElementById('livroSelect');
-    const resultadosBusca = document.getElementById('resultadosBusca');
-    const searchForm = document.getElementById('searchForm');
 
-    // Carregar livros
-    fetch('/api/livros')
-        .then(response => response.json())
-        .then(livros => {
-            livros.forEach(livro => {
-                const option = document.createElement('option');
-                option.value = livro.id;
-                option.textContent = livro.nome;
-                livroSelect.appendChild(option);
-            });
-        });
-
-    // Buscar versículos
-    searchForm.addEventListener('submit', event => {
-        event.preventDefault();
-        const livroId = livroSelect.value;
-        const capituloNumero = document.getElementById('capituloNumero').value;
-
-        fetch(`/api/versiculos/${livroId}/${capituloNumero}`)
-            .then(response => response.json())
-            .then(versiculos => {
-                resultadosBusca.innerHTML = '';
-                versiculos.forEach(versiculo => {
-                    const div = document.createElement('div');
-                    div.textContent = `Versículo ${versiculo.numero}: ${versiculo.texto}`;
-                    resultadosBusca.appendChild(div);
-                });
-            });
-    });
-});
 5. Recursos Adicionais
 Modo Noturno: Adicione uma classe CSS para o modo noturno e implemente um botão para alternar entre os temas.
 
@@ -713,31 +388,14 @@ Adicione um tema escuro ao seu CSS:
 css
 Copiar código
 /* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-}
 
-.modo-noturno {
-    background-color: #333;
-    color: #fff;
-}
-
-.modo-noturno header, .modo-noturno footer {
-    background-color: #444;
-}
-
-.modo-noturno a {
-    color: #ddd;
-}
 JavaScript para Alternar entre Temas:
 
 Adicione um botão para alternar entre o modo claro e o modo escuro:
 
 html
 Copiar código
-<!-- Adicione ao seu HTML -->
-<button id="toggleModoNoturno">Alternar Modo Noturno</button>
+
 javascript
 Copiar código
 // app.js
@@ -751,8 +409,7 @@ Adicione um botão para compartilhar versículos:
 
 html
 Copiar código
-<!-- Exemplo de botão de compartilhamento -->
-<button id="compartilharVersiculo">Compartilhar</button>
+
 Implementar Compartilhamento com JavaScript:
 
 Utilize APIs de compartilhamento:
@@ -760,18 +417,7 @@ Utilize APIs de compartilhamento:
 javascript
 Copiar código
 // app.js
-document.getElementById('compartilharVersiculo').addEventListener('click', () => {
-    const textoVersiculo = 'Versículo compartilhado'; // Substitua pelo texto real do versículo
-    if (navigator.share) {
-        navigator.share({
-            title: 'Versículo Bíblico',
-            text: textoVersiculo,
-            url: window.location.href
-        }).catch(console.error);
-    } else {
-        alert('Seu navegador não suporta a API de Compartilhamento');
-    }
-});
+
 Planos de Leitura
 Frontend para Planos de Leitura:
 
@@ -779,54 +425,13 @@ Crie uma seção para visualizar e gerenciar planos de leitura:
 
 html
 Copiar código
-<!-- Seção para planos de leitura -->
-<section id="planosLeitura">
-    <h2>Planos de Leitura</h2>
-    <div id="listaPlanos"></div>
-    <form id="novoPlano">
-        <input type="text" id="nomePlano" placeholder="Nome do Plano">
-        <textarea id="descricaoPlano" placeholder="Descrição"></textarea>
-        <button type="submit">Adicionar Plano</button>
-    </form>
-</section>
+
 JavaScript para Manipulação dos Planos de Leitura:
 
 javascript
 Copiar código
 // app.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Carregar planos de leitura
-    fetch('/api/planos')
-        .then(response => response.json())
-        .then(planos => {
-            const listaPlanos = document.getElementById('listaPlanos');
-            planos.forEach(plano => {
-                const div = document.createElement('div');
-                div.innerHTML = `<h3>${plano.nome}</h3><p>${plano.descricao}</p>`;
-                listaPlanos.appendChild(div);
-            });
-        });
 
-    // Adicionar novo plano
-    document.getElementById('novoPlano').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const nome = document.getElementById('nomePlano').value;
-        const descricao = document.getElementById('descricaoPlano').value;
-
-        fetch('/api/planos', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nome, descricao })
-        })
-        .then(response => response.json())
-        .then(plano => {
-            const listaPlanos = document.getElementById('listaPlanos');
-            const div = document.createElement('div');
-            div.innerHTML = `<h3>${plano.nome}</h3><p>${plano.descricao}</p>`;
-            listaPlanos.appendChild(div);
-        });
-    });
-});
 8. Segurança e Validação
 HTTPS
 Configuração do HTTPS:
@@ -854,20 +459,7 @@ Sempre use consultas parametrizadas para prevenir SQL Injection.
 
 javascript
 Copiar código
-// Exemplo com consultas parametrizadas
-app.get('/api/versiculos/:livro_id/:capitulo_numero', (req, res) => {
-    const { livro_id, capitulo_numero } = req.params;
-    const sql = `
-        SELECT v.numero, v.texto
-        FROM versiculos v
-        INNER JOIN capitulos c ON v.capitulo_id = c.id
-        WHERE c.livro_id = ? AND c.numero = ?
-    `;
-    db.query(sql, [livro_id, capitulo_numero], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
+
 Validação de Entrada
 Validação do Lado do Servidor:
 
@@ -875,30 +467,14 @@ Valide as entradas dos usuários no backend antes de processá-las.
 
 javascript
 Copiar código
-// Exemplo de validação
-app.post('/api/planos', (req, res) => {
-    const { nome, descricao } = req.body;
-    if (!nome || !descricao) {
-        return res.status(400).send({ error: 'Nome e descrição são obrigatórios' });
-    }
-    const sql = 'INSERT INTO planos (nome, descricao) VALUES (?, ?)';
-    db.query(sql, [nome, descricao], (err, result) => {
-        if (err) throw err;
-        res.status(201).send({ id: result.insertId, nome, descricao });
-    });
-});
+
 Validação do Lado do Cliente:
 
 Adicione validação nos formulários HTML para melhorar a experiência do usuário.
 
 html
 Copiar código
-<!-- Exemplo de validação no HTML -->
-<form id="novoPlano">
-    <input type="text" id="nomePlano" placeholder="Nome do Plano" required>
-    <textarea id="descricaoPlano" placeholder="Descrição" required></textarea>
-    <button type="submit">Adicionar Plano</button>
-</form>
+
 9. Testes e Performance
 Testes Unitários e de Integração
 Configuração de Testes:
@@ -907,15 +483,7 @@ Utilize ferramentas como Jest para escrever e executar testes.
 
 javascript
 Copiar código
-// Exemplo de teste com Jest
-const request = require('supertest');
-const app = require('./server');
 
-test('GET /api/versiculos deve retornar versículos', async () => {
-    const response = await request(app).get('/api/versiculos/1/1');
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toBeInstanceOf(Array);
-});
 Cache
 Configuração do Cache:
 
@@ -923,31 +491,7 @@ Use Redis ou uma solução similar para armazenar em cache as respostas de busca
 
 javascript
 Copiar código
-const redis = require('redis');
-const client = redis.createClient();
 
-// Cache para resultados de busca
-app.get('/api/versiculos/:livro_id/:capitulo_numero', (req, res) => {
-    const { livro_id, capitulo_numero } = req.params;
-    const cacheKey = `versiculos:${livro_id}:${capitulo_numero}`;
-    
-    client.get(cacheKey, (err, cachedData) => {
-        if (cachedData) {
-            return res.send(JSON.parse(cachedData));
-        }
-        const sql = `
-            SELECT v.numero, v.texto
-            FROM versiculos v
-            INNER JOIN capitulos c ON v.capitulo_id = c.id
-            WHERE c.livro_id = ? AND c.numero = ?
-        `;
-        db.query(sql, [livro_id, capitulo_numero], (err, results) => {
-            if (err) throw err;
-            client.setex(cacheKey, 3600, JSON.stringify(results)); // Cache por 1 hora
-            res.send(results);
-        });
-    });
-});
 Com esses aprimoramentos, seu aplicativo terá uma interface amigável, segura e com boa performance. Se precisar de mais assistência ou tiver outras perguntas, estou à disposição!
 
 como eu faço para incluir os livros e versiculos da biblia, tambem a harpa cristã e o diconario biblico?
@@ -1039,91 +583,35 @@ Buscar Livros e Versículos:
 
 javascript
 Copiar código
-// Exemplo de endpoint para buscar versículos
-app.get('/api/versiculos/:livro_id/:capitulo_numero', (req, res) => {
-    const { livro_id, capitulo_numero } = req.params;
-    const sql = `
-        SELECT v.numero, v.texto
-        FROM versiculos v
-        INNER JOIN capitulos c ON v.capitulo_id = c.id
-        WHERE c.livro_id = ? AND c.numero = ?
-    `;
-    db.query(sql, [livro_id, capitulo_numero], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
+
 Buscar Hinos da Harpa Cristã:
 
 javascript
 Copiar código
-// Exemplo de endpoint para buscar hinos
-app.get('/api/hinos/:numero', (req, res) => {
-    const { numero } = req.params;
-    const sql = 'SELECT titulo, texto FROM hinos WHERE numero = ?';
-    db.query(sql, [numero], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
+
 Buscar Definições no Dicionário Bíblico:
 
 javascript
 Copiar código
-// Exemplo de endpoint para buscar definição
-app.get('/api/dicionario/:palavra', (req, res) => {
-    const { palavra } = req.params;
-    const sql = 'SELECT definicao FROM dicionario_biblico WHERE palavra = ?';
-    db.query(sql, [palavra], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
+
 3.2 Frontend - Exibir Conteúdo
 Exibir Versículos:
 
 javascript
 Copiar código
 // app.js
-function buscarVersiculos(livroId, capituloNumero) {
-    fetch(`/api/versiculos/${livroId}/${capituloNumero}`)
-        .then(response => response.json())
-        .then(versiculos => {
-            const container = document.getElementById('versiculos');
-            container.innerHTML = '';
-            versiculos.forEach(versiculo => {
-                const div = document.createElement('div');
-                div.innerHTML = `<strong>${versiculo.numero}</strong>: ${versiculo.texto}`;
-                container.appendChild(div);
-            });
-        });
-}
+
 Exibir Hinos:
 
 javascript
 Copiar código
-// app.js
-function buscarHinos(numero) {
-    fetch(`/api/hinos/${numero}`)
-        .then(response => response.json())
-        .then(hino => {
-            const container = document.getElementById('hinos');
-            container.innerHTML = `<h2>${hino.titulo}</h2><p>${hino.texto}</p>`;
-        });
-}
+
 Exibir Definições do Dicionário Bíblico:
 
 javascript
 Copiar código
 // app.js
-function buscarDefinicao(palavra) {
-    fetch(`/api/dicionario/${palavra}`)
-        .then(response => response.json())
-        .then(definicao => {
-            const container = document.getElementById('dicionario');
-            container.innerHTML = `<p>${definicao.definicao}</p>`;
-        });
-}
+
 4. Configuração Final
 Testar Funcionalidade:
 
