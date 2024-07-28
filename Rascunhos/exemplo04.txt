@@ -1,0 +1,346 @@
+Estrutura Básica (HTML - index.html):
+
+html
+
+Verify
+
+Open In Editor
+Edit
+Run
+Copy code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bíblia Sagrada Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bíblia Sagrada</h1>
+        <nav>
+            <ul>
+                <li><a href="#antigo">Antigo Testamento</a></li>
+                <li><a href="#novo">Novo Testamento</a></li>
+                <li><a href="#pesquisa">Pesquisa</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="destaque">
+            <h2>Versículo do Dia</h2>
+            <p id="versiculo"></p>
+            <button id="novo-versiculo">Próximo Versículo</button>
+        </section>
+
+        <section id="antigo">
+            <h2>Antigo Testamento</h2>
+            </section>
+
+        <section id="novo">
+            <h2>Novo Testamento</h2>
+            </section>
+
+        <section id="pesquisa">
+            <h2>Pesquisar na Bíblia</h2>
+            <input type="text" id="pesquisa-texto" placeholder="Digite sua busca...">
+            <button id="pesquisar">Pesquisar</button>
+            <ul id="resultados-pesquisa"></ul>
+        </section>
+
+        <section id="sobre">
+            <h2>Sobre</h2>
+            <p>Informações sobre o projeto</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 - Bíblia Sagrada Online</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+Estilo (CSS - style.css):
+
+css
+
+Verify
+
+Open In Editor
+Edit
+Copy code
+body {
+    font-family: sans-serif;
+    background-color: #111;
+    color: #fff;
+}
+
+header {
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background-color: #333;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+#destaque {
+    text-align: center;
+}
+
+#novo-versiculo {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#pesquisa-texto {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#pesquisar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#resultados-pesquisa {
+    list-style: none;
+    padding: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #222;
+}
+Lógica (JavaScript - script.js):
+
+javascript
+
+Verify
+
+Open In Editor
+Edit
+Copy code
+// Função para carregar um novo versículo
+function carregarVersiculo() {
+    // Código para buscar aleatoriamente um versículo da Bíblia
+    // E definir o conteúdo do elemento #versiculo
+    // Exemplo:
+    // fetch('https://api.bible.com/v1/bibles/1/chapters/1/verses/1')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         document.getElementById('versiculo').textContent = data.verses[0].text;
+    //     });
+}
+
+// Função para pesquisar na Bíblia
+function pesquisarNaBiblia() {
+    const texto = document.getElementById('pesquisa-texto').value;
+
+    // Código para buscar o texto na Bíblia
+    // E atualizar a lista #resultados-pesquisa
+}
+
+// Chamada inicial para carregar o primeiro versículo
+carregarVersiculo();
+
+// Evento para clicar no botão "Próximo Versículo"
+document.getElementById('novo-versiculo').addEventListener('click', carregarVersiculo);
+
+// Evento para clicar no botão "Pesquisar"
+document.getElementById('pesquisar').addEventListener('click', pesquisarNaBiblia);
+Banco de Dados (MySQL - database.sql):
+
+sql
+
+Verify
+
+Open In Editor
+Edit
+Copy code
+-- Crie o banco de dados
+CREATE DATABASE biblia;
+
+-- Use o banco de dados
+USE biblia;
+
+-- Crie a tabela de livros
+CREATE TABLE livros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    testamento VARCHAR(10) NOT NULL
+);
+
+-- Crie a tabela de capítulos
+CREATE TABLE capitulos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    livro_id INT NOT NULL,
+    numero INT NOT NULL,
+    FOREIGN KEY (livro_id) REFERENCES livros(id)
+);
+
+-- Crie a tabela de versículos
+CREATE TABLE versiculos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    capitulo_id INT NOT NULL,
+    numero INT NOT NULL,
+    texto TEXT NOT NULL,
+    FOREIGN KEY (capitulo_id) REFERENCES capitulos(id)
+);
+
+-- Adicione os livros da Bíblia
+INSERT INTO livros (nome, testamento) VALUES
+('Gênesis', 'Antigo'),
+('Êxodo', 'Antigo'),
+('Levítico', 'Antigo'),
+('Números', 'Antigo'),
+('Deuteronômio', 'Antigo'),
+('Josué', 'Antigo'),
+('Juízes', 'Antigo'),
+('Rute', 'Antigo'),
+('1 Samuel', 'Antigo'),
+('2 Samuel', 'Antigo'),
+('1 Reis', 'Antigo'),
+('2 Reis', 'Antigo'),
+('1 Crônicas', 'Antigo'),
+('2 Crônicas', 'Antigo'),
+('Esdras', 'Antigo'),
+('Neemias', 'Antigo'),
+('Ester', 'Antigo'),
+('Jó', 'Antigo'),
+('Salmos', 'Antigo'),
+('Provérbios', 'Antigo'),
+('Eclesiastes', 'Antigo'),
+('Cântico dos Cânticos', 'Antigo'),
+('Isaías', 'Antigo'),
+('Jeremias', 'Antigo'),
+('Lamentações', 'Antigo'),
+('Ezequiel', 'Antigo'),
+('Daniel', 'Antigo'),
+('Oséias', 'Antigo'),
+('Joel', 'Antigo'),
+('Amós', 'Antigo'),
+('Obadias', 'Antigo'),
+('Jonas', 'Antigo'),
+('Miquéias', 'Antigo'),
+('Naum', 'Antigo'),
+('Habacuque', 'Antigo'),
+('Sofonias', 'Antigo'),
+('Ageu', 'Antigo'),
+('Zacarias', 'Antigo'),
+('Malaquias', 'Antigo'),
+('Mateus', 'Novo'),
+('Marcos', 'Novo'),
+('Lucas', 'Novo'),
+('João', 'Novo'),
+('Atos dos Apóstolos', 'Novo'),
+('Romanos', 'Novo'),
+('1 Coríntios', 'Novo'),
+('2 Coríntios', 'Novo'),
+('Gálatas', 'Novo'),
+('Efésios', 'Novo'),
+('Filipenses', 'Novo'),
+('Colossenses', 'Novo'),
+('1 Tessalonicenses', 'Novo'),
+('2 Tessalonicenses', 'Novo'),
+('1 Timóteo', 'Novo'),
+('2 Timóteo', 'Novo'),
+('Tito', 'Novo'),
+('Filemom', 'Novo'),
+('Hebreus', 'Novo'),
+('Tiago', 'Novo'),
+('1 Pedro', 'Novo'),
+('2 Pedro', 'Novo'),
+('1 João', 'Novo'),
+('2 João', 'Novo'),
+('3 João', 'Novo'),
+('Judas', 'Novo'),
+('Apocalipse', 'Novo');
+
+-- Adicione os capítulos de cada livro
+-- ... (inserir capítulos para cada livro)
+
+-- Adicione os versículos de cada capítulo
+-- ... (inserir versículos para cada capítulo)
+Lógica do Servidor (PHP - index.php):
+
+php
+
+Verify
+
+Open In Editor
+Edit
+Copy code
+<?php
+// Conexão com o banco de dados
+$servername = "localhost";
+$username = "seu_usuario";
+$password = "sua_senha";
+$dbname = "biblia";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verifique a conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+// Buscar um versículo aleatório
+$sql = "SELECT v.texto 
+        FROM versiculos v
+        JOIN capitulos c ON v.capitulo_id = c.id
+        JOIN livros l ON c.livro_id = l.id
+        ORDER BY RAND()
+        LIMIT 1";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    echo $row['texto'];
+} else {
+    echo "Nenhum versículo encontrado.";
+}
+
+$conn->close();
+?>
+Observações:
+
+API da Bíblia: O código JavaScript utiliza uma API de exemplo. Para buscar versículos de uma API real, você precisará se registrar para obter uma chave de API e ajustar o código.
+Busca na Bíblia: O código JavaScript para a pesquisa é apenas um exemplo. Você precisará implementar a lógica de pesquisa que faz sentido para seu banco de dados.
+Design Responsivo: Para um design responsivo, você precisará ajustar o CSS para diferentes tamanhos de tela.
+Banco de Dados: O código MySQL é uma sugestão básica. Você pode ajustar as tabelas e os dados de acordo com suas necessidades.
