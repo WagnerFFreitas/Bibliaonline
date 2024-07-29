@@ -1,105 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo da Bíblia</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Bíblia Sagrada Online</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Aplicativo da Bíblia</h1>
+        <h1>Bíblia Sagrada</h1>
         <nav>
-            <a href="#books">Livros</a>
-            <a href="#search">Buscar</a>
-            <a href="#notes">Notas</a>
+            <ul>
+                <li><a href="#antigo">Antigo Testamento</a></li>
+                <li><a href="#novo">Novo Testamento</a></li>
+                <li><a href="#pesquisa">Pesquisa</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
         </nav>
     </header>
-    <main>
-        <!-- Conteúdo da página inicial -->
-    </main>
-    <footer>
-        <p>&copy; 2024 Aplicativo da Bíblia</p>
-    </footer>
-    <script src="app.js"></script>
-</body>
-</html>
-<!-- Exemplo de modal para adicionar nota -->
-<div id="notaModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Adicionar Nota</h2>
-        <textarea id="notaTexto" rows="4" cols="50"></textarea>
-        <button id="salvarNota">Salvar Nota</button>
-    </div>
-</div>
-<!-- Exemplo de seção para planos de leitura -->
-<div id="planosLeitura">
-    <h2>Planos de Leitura</h2>
-    <!-- Listar planos de leitura aqui -->
-</div>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo da Bíblia</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Aplicativo da Bíblia</h1>
-        <nav>
-            <a href="#livros">Livros</a>
-            <a href="#buscar">Buscar</a>
-            <a href="#notas">Notas</a>
-        </nav>
-    </header>
     <main>
-        <section id="livros">
-            <h2>Livros da Bíblia</h2>
-            <ul id="listaLivros"></ul>
+        <section id="destaque">
+            <h2>Versículo do Dia</h2>
+            <p id="versiculo"></p>
+            <button id="novo-versiculo">Próximo Versículo</button>
         </section>
-        <section id="buscar">
-            <h2>Buscar Versículo</h2>
-            <form id="searchForm">
-                <select id="livroSelect"></select>
-                <input type="number" id="capituloNumero" placeholder="Número do Capítulo">
-                <button type="submit">Buscar</button>
-            </form>
-            <div id="resultadosBusca"></div>
+
+        <section id="antigo">
+            <h2>Antigo Testamento</h2>
+            </section>
+
+        <section id="novo">
+            <h2>Novo Testamento</h2>
+            </section>
+
+        <section id="pesquisa">
+            <h2>Pesquisar na Bíblia</h2>
+            <input type="text" id="pesquisa-texto" placeholder="Digite sua busca...">
+            <button id="pesquisar">Pesquisar</button>
+            <ul id="resultados-pesquisa"></ul>
         </section>
-        <section id="notas">
-            <h2>Notas</h2>
-            <!-- Interface para notas -->
+
+        <section id="sobre">
+            <h2>Sobre</h2>
+            <p>Informações sobre o projeto</p>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 Aplicativo da Bíblia</p>
+        <p>&copy; 2023 - Bíblia Sagrada Online</p>
     </footer>
-    <script src="app.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
-<!-- Adicione ao seu HTML -->
-<button id="toggleModoNoturno">Alternar Modo Noturno</button>
-
-<!-- Exemplo de botão de compartilhamento -->
-<button id="compartilharVersiculo">Compartilhar</button>
-
-<!-- Seção para planos de leitura -->
-<section id="planosLeitura">
-    <h2>Planos de Leitura</h2>
-    <div id="listaPlanos"></div>
-    <form id="novoPlano">
-        <input type="text" id="nomePlano" placeholder="Nome do Plano">
-        <textarea id="descricaoPlano" placeholder="Descrição"></textarea>
-        <button type="submit">Adicionar Plano</button>
-    </form>
-</section>
-<!-- Exemplo de validação no HTML -->
-<form id="novoPlano">
-    <input type="text" id="nomePlano" placeholder="Nome do Plano" required>
-    <textarea id="descricaoPlano" placeholder="Descrição" required></textarea>
-    <button type="submit">Adicionar Plano</button>
-</form>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bíblia Sagrada</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+    <div class="header-title">
+        Bíblia Hábil
+    </div>
+    <div class="header-menu">
+        <a href="#" onclick="showSection('bible')">Bíblia</a>
+        <a href="#" onclick="showSection('harp')">Harpa</a>
+        <a href="#" onclick="showSection('dictionary')">Dicionário</a>
+        <a href="#">Ajuda</a>
+    </div>
+    </div>
+    <div class="content">
+    <div id="bible" class="section">
+        <div class="sidebar">
+        <div class="sidebar-title">Livros da Bíblia</div>
+        <div class="sidebar-list" id="sidebar-list"></div>
+        </div>
+        <div class="main">
+        <div class="main-title">Escolha um livro</div>
+        <div class="main-content" id="book-content"></div>
+        </div>
+    </div>
+    <div id="harp" class="section">
+        <div class="main">
+        <div class="main-title">Hinos da Harpa</div>
+        <div class="main-content" id="harp-content"></div>
+        </div>
+    </div>
+    <div id="dictionary" class="section">
+        <div class="main">
+        <div class="main-title">Dicionário Bíblico</div>
+        <div class="main-content" id="dictionary-content"></div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+    Copyright © 2024 Milagre Software.
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
