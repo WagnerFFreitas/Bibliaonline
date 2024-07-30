@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
-		"dotnet.preferCSharpExtension": true
+		"dotnet.preferCSharpExtension": true,
+		"cSpell.language": "en,pt-BR"
 	}
 }

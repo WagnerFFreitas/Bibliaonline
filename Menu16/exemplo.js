@@ -50,3 +50,38 @@ function loadVerses(chapterId) {
             });
         });
 }
+
+
+function loadChapters(bookId) {
+    fetch(`fetch_books.php?livro=${bookId}`)
+        .then(response => response.json())
+        .then(data => {
+            const chaptersDiv = document.getElementById('chapters');
+            chaptersDiv.innerHTML = '';
+            data.forEach(chapter => {
+                const div = document.createElement('div');
+                div.textContent = `Capítulo ${chapter.numero}`;
+                div.dataset.id = chapter.id;
+                div.addEventListener('click', () => {
+                    loadVerses(chapter.id);
+                });
+                chaptersDiv.appendChild(div);
+            });
+        });
+}
+
+function loadVerses(chapterId) {
+    fetch(`fetch_books.php?capitulo=${chapterId}`)
+        .then(response => response.json())
+        .then(data => {
+            const versesDiv = document.getElementById('verses');
+            versesDiv.innerHTML = '';
+            data.forEach(verse => {
+                const p = document.createElement('p');
+                p.textContent = `${verse.numero}: ${verse.texto}`;
+                versesDiv.appendChild(p);
+            });
+        });
+}
+
+document.addEventListener("DOMContentLoaded",

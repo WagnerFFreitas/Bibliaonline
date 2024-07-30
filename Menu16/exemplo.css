@@ -1,0 +1,284 @@
+/*body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+}
+
+.sidebar ul li:hover {
+    background-color: #444;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}*/
+
+/* Estilo responsivo */
+/*@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.sidebar ul li:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.chapters, .verses {
+    margin-top: 20px;
+}
+
+.chapters div, .verses p {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.chapters div:hover, .verses p:hover {
+    background-color: #eee;
+}*/
+
+/* Estilo responsivo */
+/*@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}
+*/
+
+/*body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #141414;
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #E50914;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.sidebar ul li:hover {
+    background-color: #E50914;
+    transform: translateY(-2px);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.chapters, .verses {
+    margin-top: 20px;
+}
+
+.chapters div, .verses p {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.chapters div:hover, .verses p:hover {
+    background-color: #eee;
+}*/
+
+/* Estilo responsivo */
+/*@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}*/
+
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414; /* Fundo da página preto */
+    color: #fff;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333; /* Mantendo um tom mais claro para o menu lateral */
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #E50914; /* Cor do título no menu lateral */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.sidebar ul li:hover {
+    background-color: #E50914; /* Efeito hover no menu lateral */
+    transform: translateY(-2px);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.chapters, .verses {
+    margin-top: 20px;
+}
+
+.chapters div, .verses p {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.chapters div:hover, .verses p:hover {
+    background-color: #eee;
+    color: #000; /* Cor do texto quando hover */
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}
+
+

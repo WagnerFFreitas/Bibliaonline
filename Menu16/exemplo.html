@@ -1,0 +1,230 @@
+<!--<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            Livros da Bíblia serão carregados aqui
+        </ul>
+    </div>
+    <div class="content">
+        Conteúdo principal
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('fetch_books.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookList = document.getElementById('book-list');
+                    data.forEach(book => {
+                        const li = document.createElement('li');
+                        li.textContent = book;
+                        bookList.appendChild(li);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            Livros da Bíblia serão carregados aqui
+        </ul>
+    </div>
+    <div class="content">
+        <div id="chapters" class="chapters">
+            Capítulos serão carregados aqui
+        </div>
+        <div id="verses" class="verses">
+            Versículos serão carregados aqui
+        </div>
+    </div>
+    <audio id="hover-sound" src="hover.mp3"></audio>
+    <audio id="click-sound" src="click.mp3"></audio>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('fetch_books.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookList = document.getElementById('book-list');
+                    data.forEach(book => {
+                        const li = document.createElement('li');
+                        li.textContent = book.nome;
+                        li.dataset.id = book.id;
+                        li.addEventListener('mouseenter', () => {
+                            document.getElementById('hover-sound').play();
+                        });
+                        li.addEventListener('click', () => {
+                            document.getElementById('click-sound').play();
+                            loadChapters(book.id);
+                        });
+                        bookList.appendChild(li);
+                    });
+                });
+        });
+
+        function loadChapters(bookId) {
+            fetch(`fetch_books.php?livro=${bookId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const chaptersDiv = document.getElementById('chapters');
+                    chaptersDiv.innerHTML = '';
+                    data.forEach(chapter => {
+                        const div = document.createElement('div');
+                        div.textContent = `Capítulo ${chapter.numero}`;
+                        div.dataset.id = chapter.id;
+                        div.addEventListener('click', () => {
+                            loadVerses(chapter.id);
+                        });
+                        chaptersDiv.appendChild(div);
+                    });
+                });
+        }
+
+        function loadVerses(chapterId) {
+            fetch(`fetch_books.php?capitulo=${chapterId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const versesDiv = document.getElementById('verses');
+                    versesDiv.innerHTML = '';
+                    data.forEach(verse => {
+                        const p = document.createElement('p');
+                        p.textContent = `${verse.numero}: ${verse.texto}`;
+                        versesDiv.appendChild(p);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            Livros da Bíblia serão carregados aqui
+        </ul>
+    </div>
+    <div class="content">
+        <div id="chapters" class="chapters">
+            Capítulos serão carregados aqui
+        </div>
+        <div id="verses" class="verses">
+            Versículos serão carregados aqui
+        </div>
+    </div>
+    <audio id="hover-sound" src="hover.mp3"></audio>
+    <audio id="click-sound" src="click.mp3"></audio>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('fetch_books.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookList = document.getElementById('book-list');
+                    data.forEach(book => {
+                        const li = document.createElement('li');
+                        li.textContent = book.nome;
+                        li.dataset.id = book.id;
+                        li.addEventListener('mouseenter', () => {
+                            document.getElementById('hover-sound').play();
+                        });
+                        li.addEventListener('click', () => {
+                            document.getElementById('click-sound').play();
+                            loadChapters(book.id);
+                        });
+                        bookList.appendChild(li);
+                    });
+                });
+        });
+
+        function loadChapters(bookId) {
+            fetch(`fetch_books.php?livro=${bookId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const chaptersDiv = document.getElementById('chapters');
+                    chaptersDiv.innerHTML = '';
+                    data.forEach(chapter => {
+                        const div = document.createElement('div');
+                        div.textContent = `Capítulo ${chapter.numero}`;
+                        div.dataset.id = chapter.id;
+                        div.addEventListener('click', () => {
+                            loadVerses(chapter.id);
+                        });
+                        chaptersDiv.appendChild(div);
+                    });
+                });
+        }
+
+        function loadVerses(chapterId) {
+            fetch(`fetch_books.php?capitulo=${chapterId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const versesDiv = document.getElementById('verses');
+                    versesDiv.innerHTML = '';
+                    data.forEach(verse => {
+                        const p = document.createElement('p');
+                        p.textContent = `${verse.numero}: ${verse.texto}`;
+                        versesDiv.appendChild(p);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            <!-- Livros da Bíblia serão carregados aqui -->
+        </ul>
+    </div>
+    <div class="content">
+        <div id="chapters" class="chapters">
+            <!-- Capítulos serão carregados aqui -->
+        </div>
+        <div id="verses" class="verses">
+            <!-- Versículos serão carregados aqui -->
+        </div>
+    </div>
+    <audio id="hover-sound" src="hover.mp3"></audio>
+    <audio id="click-sound" src="click.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
