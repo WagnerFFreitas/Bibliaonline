@@ -1,0 +1,42 @@
+#iconeLogin{
+
+    margin-top: 24px;
+    cursor: pointer;
+
+}
+
+#logo{
+
+    margin-top: 15px;
+    cursor: pointer;
+    width: 150px;
+
+}
+
+#logoM{
+
+    margin: 3px;
+    cursor: pointer;
+
+}
+
+/* Icone do menu individual */
+#iconeMenu{
+
+    cursor: pointer;
+
+}
+
+/* Icones do conteúdo do menu */
+#iconesMenu{
+
+    margin-top: -3px;
+    margin-right: 10px;
+
+}
+
+#linkMenu{
+
+    text-decoration: none;
+
+}

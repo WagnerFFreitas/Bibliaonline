@@ -1,0 +1,750 @@
+Estrutura do Banco de Dados (MySQL)
+Crie uma tabela no seu banco de dados MySQL para armazenar os livros da Bíblia:
+
+sql
+Copiar código
+CREATE TABLE livros_biblia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL
+);
+
+INSERT INTO livros_biblia (nome) VALUES 
+('Gênesis'), ('Êxodo'), ('Levítico'), ('Números'), ('Deuteronômio'),
+('Josué'), ('Juízes'), ('Rute'), ('1 Samuel'), ('2 Samuel'),
+-- Continue adicionando os livros restantes da Bíblia
+('Apocalipse');
+2. PHP para Buscar Livros da Bíblia
+Crie um arquivo fetch_books.php para buscar os livros da Bíblia do banco de dados:
+
+php
+Copiar código
+<?php
+$servername = "localhost";
+$username = "seu_usuario";
+$password = "sua_senha";
+$dbname = "seu_banco_de_dados";
+
+// Criar conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Checar conexão
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT nome FROM livros_biblia";
+$result = $conn->query($sql);
+
+$livros = array();
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $livros[] = $row['nome'];
+    }
+}
+$conn->close();
+
+echo json_encode($livros);
+?>
+3. HTML e JavaScript
+Crie a estrutura HTML e use JavaScript para carregar os livros da Bíblia dinamicamente:
+
+html
+Copiar código
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            <!-- Livros da Bíblia serão carregados aqui -->
+        </ul>
+    </div>
+    <div class="content">
+        <!-- Conteúdo principal -->
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('fetch_books.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookList = document.getElementById('book-list');
+                    data.forEach(book => {
+                        const li = document.createElement('li');
+                        li.textContent = book;
+                        bookList.appendChild(li);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
+4. CSS
+Adicione o estilo para o menu lateral no arquivo styles.css:
+
+css
+Copiar código
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+}
+
+.sidebar ul li:hover {
+    background-color: #444;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}
+Integração
+Certifique-se de que o arquivo fetch_books.php está no mesmo diretório do arquivo HTML ou ajuste o caminho no JavaScript.
+Verifique as credenciais do banco de dados no arquivo fetch_books.php e ajuste conforme necessário.
+Isso deve criar um menu lateral responsivo que lista os livros da Bíblia Sagrada e carrega os dados dinamicamente a partir do seu banco de dados MySQL. Se precisar de mais alguma coisa ou algum ajuste, é só avisar!
+
+Poderia colocar a função de quando eu passe o mouse sobre o botão livro ele tive o efeito de com estivesse sendo pressionado e com efeito sonoro e ao clicar nele abrisse abaixo a opções dos capítulos e ao clicar aparece no meio página os versículos 
+ChatGPT
+Claro, Wagner! Vou adicionar o efeito de hover, o efeito sonoro, e a funcionalidade de abrir capítulos e versículos ao clicar no livro. Vou atualizar o código para incluir essas funcionalidades.
+
+1. Estrutura do Banco de Dados (MySQL)
+Crie duas tabelas adicionais para armazenar os capítulos e versículos:
+
+sql
+Copiar código
+CREATE TABLE capitulos_biblia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    livro_id INT,
+    numero INT,
+    FOREIGN KEY (livro_id) REFERENCES livros_biblia(id)
+);
+
+CREATE TABLE versiculos_biblia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    capitulo_id INT,
+    numero INT,
+    texto TEXT,
+    FOREIGN KEY (capitulo_id) REFERENCES capitulos_biblia(id)
+);
+2. PHP para Buscar Capítulos e Versículos
+Atualize fetch_books.php para buscar capítulos e versículos:
+
+php
+Copiar código
+<?php
+$servername = "localhost";
+$username = "seu_usuario";
+$password = "sua_senha";
+$dbname = "seu_banco_de_dados";
+
+// Criar conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Checar conexão
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_GET['livro'])) {
+    $livro_id = intval($_GET['livro']);
+    $sql = "SELECT id, numero FROM capitulos_biblia WHERE livro_id = $livro_id";
+    $result = $conn->query($sql);
+
+    $capitulos = array();
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $capitulos[] = $row;
+        }
+    }
+    echo json_encode($capitulos);
+} elseif (isset($_GET['capitulo'])) {
+    $capitulo_id = intval($_GET['capitulo']);
+    $sql = "SELECT numero, texto FROM versiculos_biblia WHERE capitulo_id = $capitulo_id";
+    $result = $conn->query($sql);
+
+    $versiculos = array();
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $versiculos[] = $row;
+        }
+    }
+    echo json_encode($versiculos);
+} else {
+    $sql = "SELECT id, nome FROM livros_biblia";
+    $result = $conn->query($sql);
+
+    $livros = array();
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $livros[] = $row;
+        }
+    }
+    echo json_encode($livros);
+}
+$conn->close();
+?>
+3. HTML e JavaScript
+Atualize o HTML e JavaScript para incluir as funcionalidades de hover, som e carregamento de capítulos e versículos:
+
+html
+Copiar código
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            <!-- Livros da Bíblia serão carregados aqui -->
+        </ul>
+    </div>
+    <div class="content">
+        <div id="chapters" class="chapters">
+            <!-- Capítulos serão carregados aqui -->
+        </div>
+        <div id="verses" class="verses">
+            <!-- Versículos serão carregados aqui -->
+        </div>
+    </div>
+    <audio id="hover-sound" src="hover.mp3"></audio>
+    <audio id="click-sound" src="click.mp3"></audio>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('fetch_books.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookList = document.getElementById('book-list');
+                    data.forEach(book => {
+                        const li = document.createElement('li');
+                        li.textContent = book.nome;
+                        li.dataset.id = book.id;
+                        li.addEventListener('mouseenter', () => {
+                            document.getElementById('hover-sound').play();
+                        });
+                        li.addEventListener('click', () => {
+                            document.getElementById('click-sound').play();
+                            loadChapters(book.id);
+                        });
+                        bookList.appendChild(li);
+                    });
+                });
+        });
+
+        function loadChapters(bookId) {
+            fetch(`fetch_books.php?livro=${bookId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const chaptersDiv = document.getElementById('chapters');
+                    chaptersDiv.innerHTML = '';
+                    data.forEach(chapter => {
+                        const div = document.createElement('div');
+                        div.textContent = `Capítulo ${chapter.numero}`;
+                        div.dataset.id = chapter.id;
+                        div.addEventListener('click', () => {
+                            loadVerses(chapter.id);
+                        });
+                        chaptersDiv.appendChild(div);
+                    });
+                });
+        }
+
+        function loadVerses(chapterId) {
+            fetch(`fetch_books.php?capitulo=${chapterId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const versesDiv = document.getElementById('verses');
+                    versesDiv.innerHTML = '';
+                    data.forEach(verse => {
+                        const p = document.createElement('p');
+                        p.textContent = `${verse.numero}: ${verse.texto}`;
+                        versesDiv.appendChild(p);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
+4. CSS
+Atualize o estilo para incluir o efeito de hover no arquivo styles.css:
+
+css
+Copiar código
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.sidebar ul li:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.chapters, .verses {
+    margin-top: 20px;
+}
+
+.chapters div, .verses p {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.chapters div:hover, .verses p:hover {
+    background-color: #eee;
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}
+Arquivos de Som
+Certifique-se de adicionar os arquivos de som hover.mp3 e click.mp3 na mesma pasta do seu projeto.
+
+Com essas atualizações, o menu lateral será responsivo e incluirá os efeitos de hover, som ao passar o mouse e ao clicar, além de carregar capítulos e versículos dinamicamente. Se precisar de mais alguma coisa ou algum ajuste, é só avisar!
+
+Pode acrescentar a cor da página da Netflix como exemplo no menu por favor 
+ChatGPT
+Claro, Wagner! Vou adicionar a cor da página da Netflix ao menu lateral. A cor característica da Netflix é um tom de vermelho (#E50914) e preto (#141414). Vou atualizar o código CSS para refletir essas cores.
+
+HTML e JavaScript
+O HTML e JavaScript permanecem os mesmos que os fornecidos anteriormente.
+
+CSS
+Atualize o estilo no arquivo styles.css para incluir as cores da Netflix:
+
+css
+Copiar código
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #141414;
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #E50914;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.sidebar ul li:hover {
+    background-color: #E50914;
+    transform: translateY(-2px);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.chapters, .verses {
+    margin-top: 20px;
+}
+
+.chapters div, .verses p {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.chapters div:hover, .verses p:hover {
+    background-color: #eee;
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}
+HTML e JavaScript (Relembrando)
+Aqui está o HTML e JavaScript para referência:
+
+html
+Copiar código
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            <!-- Livros da Bíblia serão carregados aqui -->
+        </ul>
+    </div>
+    <div class="content">
+        <div id="chapters" class="chapters">
+            <!-- Capítulos serão carregados aqui -->
+        </div>
+        <div id="verses" class="verses">
+            <!-- Versículos serão carregados aqui -->
+        </div>
+    </div>
+    <audio id="hover-sound" src="hover.mp3"></audio>
+    <audio id="click-sound" src="click.mp3"></audio>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('fetch_books.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookList = document.getElementById('book-list');
+                    data.forEach(book => {
+                        const li = document.createElement('li');
+                        li.textContent = book.nome;
+                        li.dataset.id = book.id;
+                        li.addEventListener('mouseenter', () => {
+                            document.getElementById('hover-sound').play();
+                        });
+                        li.addEventListener('click', () => {
+                            document.getElementById('click-sound').play();
+                            loadChapters(book.id);
+                        });
+                        bookList.appendChild(li);
+                    });
+                });
+        });
+
+        function loadChapters(bookId) {
+            fetch(`fetch_books.php?livro=${bookId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const chaptersDiv = document.getElementById('chapters');
+                    chaptersDiv.innerHTML = '';
+                    data.forEach(chapter => {
+                        const div = document.createElement('div');
+                        div.textContent = `Capítulo ${chapter.numero}`;
+                        div.dataset.id = chapter.id;
+                        div.addEventListener('click', () => {
+                            loadVerses(chapter.id);
+                        });
+                        chaptersDiv.appendChild(div);
+                    });
+                });
+        }
+
+        function loadVerses(chapterId) {
+            fetch(`fetch_books.php?capitulo=${chapterId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const versesDiv = document.getElementById('verses');
+                    versesDiv.innerHTML = '';
+                    data.forEach(verse => {
+                        const p = document.createElement('p');
+                        p.textContent = `${verse.numero}: ${verse.texto}`;
+                        versesDiv.appendChild(p);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
+Agora o menu lateral terá as cores características da Netflix, com o vermelho (#E50914) e o preto (#141414). Se precisar de mais alguma coisa ou algum ajuste, é só avisar!
+
+A cor seria a de fundo da pagina 
+ChatGPT
+Entendi, Wagner. Vou ajustar o CSS para que o fundo da página tenha a cor característica da Netflix e o menu lateral tenha um efeito coerente com essa paleta de cores.
+
+HTML e JavaScript
+O HTML e JavaScript permanecem os mesmos que os fornecidos anteriormente.
+
+CSS
+Atualize o estilo no arquivo styles.css para incluir o fundo da página na cor preta (#141414) e o menu lateral com cores da Netflix:
+
+css
+Copiar código
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414; /* Fundo da página preto */
+    color: #fff;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333; /* Mantendo um tom mais claro para o menu lateral */
+    color: #fff;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #E50914; /* Cor do título no menu lateral */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.sidebar ul li:hover {
+    background-color: #E50914; /* Efeito hover no menu lateral */
+    transform: translateY(-2px);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.chapters, .verses {
+    margin-top: 20px;
+}
+
+.chapters div, .verses p {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.chapters div:hover, .verses p:hover {
+    background-color: #eee;
+    color: #000; /* Cor do texto quando hover */
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li {
+        flex: 1 1 50%;
+    }
+}
+HTML e JavaScript (Relembrando)
+Aqui está o HTML e JavaScript para referência:
+
+html
+Copiar código
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Livros da Bíblia</h2>
+        <ul id="book-list">
+            <!-- Livros da Bíblia serão carregados aqui -->
+        </ul>
+    </div>
+    <div class="content">
+        <div id="chapters" class="chapters">
+            <!-- Capítulos serão carregados aqui -->
+        </div>
+        <div id="verses" class="verses">
+            <!-- Versículos serão carregados aqui -->
+        </div>
+    </div>
+    <audio id="hover-sound" src="hover.mp3"></audio>
+    <audio id="click-sound" src="click.mp3"></audio>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('fetch_books.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookList = document.getElementById('book-list');
+                    data.forEach(book => {
+                        const li = document.createElement('li');
+                        li.textContent = book.nome;
+                        li.dataset.id = book.id;
+                        li.addEventListener('mouseenter', () => {
+                            document.getElementById('hover-sound').play();
+                        });
+                        li.addEventListener('click', () => {
+                            document.getElementById('click-sound').play();
+                            loadChapters(book.id);
+                        });
+                        bookList.appendChild(li);
+                    });
+                });
+        });
+
+        function loadChapters(bookId) {
+            fetch(`fetch_books.php?livro=${bookId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const chaptersDiv = document.getElementById('chapters');
+                    chaptersDiv.innerHTML = '';
+                    data.forEach(chapter => {
+                        const div = document.createElement('div');
+                        div.textContent = `Capítulo ${chapter.numero}`;
+                        div.dataset.id = chapter.id;
+                        div.addEventListener('click', () => {
+                            loadVerses(chapter.id);
+                        });
+                        chaptersDiv.appendChild(div);
+                    });
+                });
+        }
+
+        function loadVerses(chapterId) {
+            fetch(`fetch_books.php?capitulo=${chapterId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const versesDiv = document.getElementById('verses');
+                    versesDiv.innerHTML = '';
+                    data.forEach(verse => {
+                        const p = document.createElement('p');
+                        p.textContent = `${verse.numero}: ${verse.texto}`;
+                        versesDiv.appendChild(p);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
+Com essas atualizações, o fundo da página será preto (#141414), e o menu lateral terá um efeito de hover em vermelho (#E50914) característico da Netflix. Se precisar de mais alguma coisa ou ajustes, é só avisar!

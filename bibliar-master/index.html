@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>Bibliar</title>
+
+	<link href="style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+	<div class="container">
+  		<table>
+  			<tr>
+  				<td>Version</td>
+  				<td>Books</td>
+  				<td>Chapters</td>
+  				<td>Versicle</td>
+  			</tr>
+  			<tr>
+  				<td><select id="bibliar_t" > </select></td>
+  				<td><select id="bibliar_b"> </select></td>
+  				<td><select id="bibliar_c"></select></td>
+  				<td><select id="bibliar_v"> </select></td>
+  			</tr>
+        <tr>
+          <td colspan="3">
+            <input type="text" id="bibliar_s" value="" />
+          </td>
+          <td><input type="button" id="bibliar_a" value="Search" /></td>
+        </td>
+  		</table>
+
+  		<div id="bibliar_r"></div>
+	</div>
+
+	<script src="inc/jquery.js"></script>
+	<script src="inc/app.js"></script>
+</body>
+</html>
