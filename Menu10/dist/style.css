@@ -1,10 +1,10 @@
-body {
+/*body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #141414;
   color: #fff;
-}
+}*/
 
 .header {
   background-color: #1a1a1a;
@@ -37,6 +37,9 @@ body {
 .main {
   display: flex;
   padding: 20px;
+  /* -- */
+  margin-left: 400px;
+  
 }
 
 .content {
@@ -55,7 +58,6 @@ body {
   text-align: center;
   padding: 10px;
 }
-
 
 /*----------------------*/
 .layout {
@@ -112,13 +114,14 @@ body {
 .sidebar.has-bg-image .image-wrapper {
   display: block;
 }
+/* Menu lateral */
 .sidebar .sidebar-layout {
   height: auto;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: #0c1e35;
+  background-color: #1a1a1a;
   z-index: 2;
 }
 .sidebar .sidebar-layout .sidebar-header {
@@ -354,8 +357,10 @@ body {
 body {
   margin: 0;
   height: 100vh;
+  padding: 0;
   font-family: "Poppins", sans-serif;
   color: #3f4750;
+  background-color: #141414;
   font-size: 0.9rem;
 }
 
@@ -372,6 +377,8 @@ a {
   display: flex;
   align-items: center;
 }
+
+/* Layout do titulo do menu */
 .layout .sidebar .pro-sidebar-logo > div {
   width: 35px;
   min-width: 35px;
@@ -385,7 +392,7 @@ a {
   font-size: 24px;
   font-weight: 700;
   background-color: #ff8100;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .layout .sidebar .pro-sidebar-logo > h5 {
   overflow: hidden;
