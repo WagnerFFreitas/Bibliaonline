@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bíblia Sagrada</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Bíblia Sagrada</h1>
+        <nav class="nav">
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#livros">Livros</a></li>
+                <li><a href="#planos">Planos de Leitura</a></li>
+                <li><a href="#baixar">Baixar</a></li>
+                <li><a href="#perfil">Perfil</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <select>
+                <option>Livro</option>
+                <!-- Adicione os livros aqui -->
+            </select>
+            <input type="text" placeholder="Digite o termo de busca">
+            <button>Buscar</button>
+        </div>
+    </header>
+    <main class="main">
+        <aside class="sidebar">
+            <h2>Livros</h2>
+            <ul>
+                <li data-livro="genesis">Gênesis</li>
+                <li data-livro="exodo">Êxodo</li>
+                <li data-livro="levitico">Levítico</li>
+                <li data-livro="numeros">Números</li>
+                <li data-livro="deuteronomio">Deuteronômio</li>
+                <li data-livro="josue">Josué</li>
+                <li data-livro="juizes">Juízes</li>
+                <li data-livro="rute">Rute</li>
+                <li data-livro="1samuel">1 Samuel</li>
+                <li data-livro="2samuel">2 Samuel</li>
+            </ul>
+        </aside>
+        <section class="content">
+            <div id="capitulos" class="capitulos">
+                <!-- Os capítulos serão exibidos aqui -->
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        © Bíblia Sagrada 2024
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
