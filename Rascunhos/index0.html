@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bíblia Sagrada</title>
+    <link rel="stylesheet" href="biblia.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Bíblia Sagrada</h1>
+        <nav class="nav">
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#livros">Livros</a></li>
+                <!--<li><a href="#planos">Planos de Leitura</a></li>-->
+                <li><a href="#Baixar">Baixar</a></li>
+                <li><a href="#perfil">Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <section class="content">
+            <section id="buscar">
+            <h3>Buscar Versículo</h3>
+                <form id="searchForm">
+                    <select id="livroSelect"></select>
+                    <input type="number" id="capituloNumero" placeholder="Número do Capítulo">
+                    <button type="submit">Buscar</button>
+                </form>
+            <div id="resultadosBusca"></div>
+        </section>
+        <aside class="sidebar">
+            <!-- Barra lateral com recursos adicionais -->
+        </aside>
+    </main>
+    <footer class="footer">
+        <p>&copy; Bíblia Sagrada 2024</p>
+    </footer>
+    <script src="biblia.js"></script>
+</body>
+</html>
