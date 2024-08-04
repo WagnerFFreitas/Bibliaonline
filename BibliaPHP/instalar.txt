@@ -1,0 +1,22 @@
+Instruções:
+Versão do php 7.4 8...
+Sistema da Bíblia Sagrada Versão 2.0
+em PHP e Mysqli 
+
+Para instalar o sistema você precisa
+- Criar um banco de dados com nome 'biblia' com a colação utf8mb4_general_ci
+- Depois de criar o banco de dados exporte a tabela biblia.sql que está na pasta banco para o seu banco de dados mysql.
+- Você deve criar um usuário e dar permissão para fazer o select
+- Configure o arquivo config.php com as informações do nome do servidor,usuário,senha,banco.
+
+- O arquivo que faz o acesso ao banco de dados é o config.php
+
+
+- Se você instalar em localhost com o xampp ou outro o usuário que acesso o banco geralmente é root sem senha.
+
+No cpanel ou outra forma de entrar no gerenciador da hospedem terá que criar um banco de dados e 
+um usuário para acessar o banco biblia associar permissão ao usuário de 'select' apenas.
+
+
+- Bons estudos.
+Obrigado

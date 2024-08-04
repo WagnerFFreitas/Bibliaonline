@@ -1,0 +1,50 @@
+.bible-header-custom {
+  display: grid;
+  align-content: center;
+  width: fit-content;
+  padding: 4px 20px;
+  position: absolute;
+  top: 153px;
+  left: 10px;
+  background-color: #000;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 35px;
+}
+
+.music-slide {
+ text-shadow: 1px 1px 20px rgba(0, 0, 0, 0;5);
+}
+
+desc {
+  font-size: 35px;
+}
+
+.bible_slide {
+    display: grid;
+    padding: 30px;
+    height: 150px;
+    border-radius: 20px;
+    color: #000;
+    background-color: #fff;
+}
+
+.bible_slide > span {
+  display: none;
+}
+
+@keyframes fade-in {
+    from {opacity: 0.0}
+    to   {opacity: 1.0}
+}
+
+@keyframes fade-out {
+    from {opacity: 1.0}
+    to   {opacity: 0.0}
+}
+
+desc, ctt, .music_slide {
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}

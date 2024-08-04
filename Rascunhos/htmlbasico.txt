@@ -1,0 +1,333 @@
+Com certeza posso te ajudar a criar seu aplicativo da Bíblia em HTML, CSS, JavaScript e MySQL! Vou te dar um guia passo a passo e exemplos de código para te guiar no processo.
+
+1. Crie a Estrutura Básica (HTML):
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bíblia Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bíblia Online</h1>
+    </header>
+
+    <main>
+        <section id="menu">
+            <h2>Selecione o Versículo</h2>
+            <div>
+                <select id="livro"></select>
+                <select id="capitulo"></select>
+                <select id="versiculo"></select>
+            </div>
+        </section>
+
+        <section id="texto">
+            <p></p>
+        </section>
+
+        <section id="acoes">
+            <button id="adicionar-marcador">Adicionar Marcador</button>
+            <button id="compartilhar">Compartilhar</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+content_copy
+Use code with caution.
+Html
+
+2. Estilização (CSS):
+
+body {
+    font-family: sans-serif;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+#menu {
+    margin-bottom: 20px;
+}
+
+#menu select {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#texto p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+#acoes button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+content_copy
+Use code with caution.
+Css
+
+3. Lógica (JavaScript):
+
+// Obter elementos do DOM
+const livroSelect = document.getElementById('livro');
+const capituloSelect = document.getElementById('capitulo');
+const versiculoSelect = document.getElementById('versiculo');
+const textoElement = document.querySelector('#texto p');
+const adicionarMarcadorButton = document.getElementById('adicionar-marcador');
+const compartilharButton = document.getElementById('compartilhar');
+
+// Função para buscar o texto do versículo
+function buscarVersiculo() {
+  const livro = livroSelect.value;
+  const capitulo = capituloSelect.value;
+  const versiculo = versiculoSelect.value;
+
+  // Aqui você precisa fazer uma requisição AJAX para o seu backend
+  // para buscar o texto do versículo do banco de dados MySQL
+  fetch(`http://localhost:3000/api/versiculo/${livro}/${capitulo}/${versiculo}`)
+    .then(response => response.json())
+    .then(data => {
+      textoElement.textContent = data.texto; 
+    })
+    .catch(error => {
+      console.error('Erro ao buscar versículo:', error);
+    });
+}
+
+// Função para adicionar um marcador
+function adicionarMarcador() {
+  const livro = livroSelect.value;
+  const capitulo = capituloSelect.value;
+  const versiculo = versiculoSelect.value;
+
+  // Aqui você precisa fazer uma requisição AJAX para o seu backend
+  // para salvar o marcador no banco de dados MySQL
+  fetch('http://localhost:3000/api/marcadores', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ livro, capitulo, versiculo })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Exiba uma mensagem de sucesso para o usuário
+  })
+  .catch(error => {
+    console.error('Erro ao salvar marcador:', error);
+  });
+}
+
+// Função para compartilhar o versículo
+function compartilharVersiculo() {
+  const livro = livroSelect.value;
+  const capitulo = capituloSelect.value;
+  const versiculo = versiculoSelect.value;
+
+  // Aqui você precisa fazer uma requisição AJAX para o seu backend
+  // para gerar a URL de compartilhamento e redirecionar o usuário
+  fetch(`http://localhost:3000/api/compartilhar/${livro}/${capitulo}/${versiculo}`)
+    .then(response => response.json())
+    .then(data => {
+      window.location.href = data.url; 
+    })
+    .catch(error => {
+      console.error('Erro ao gerar URL de compartilhamento:', error);
+    });
+}
+
+// Popular os menus de livros, capítulos e versículos
+function popularMenus() {
+  // Aqui você precisa fazer uma requisição AJAX para o seu backend
+  // para buscar os livros, capítulos e versículos do banco de dados MySQL
+  fetch('http://localhost:3000/api/livros')
+    .then(response => response.json())
+    .then(livros => {
+      livros.forEach(livro => {
+        const option = document.createElement('option');
+        option.value = livro.id;
+        option.text = livro.nome;
+        livroSelect.add(option);
+      });
+
+      // Adicione eventos para atualizar os menus de capítulos e versículos
+      livroSelect.addEventListener('change', () => {
+        // ...
+      });
+    })
+    .catch(error => {
+      console.error('Erro ao buscar livros:', error);
+    });
+}
+
+// Adicionar eventos aos botões
+adicionarMarcadorButton.addEventListener('click', adicionarMarcador);
+compartilharButton.addEventListener('click', compartilharVersiculo);
+
+// Popular os menus ao carregar a página
+window.onload = popularMenus;
+content_copy
+Use code with caution.
+Js
+
+4. Backend (Node.js, Express.js e MySQL):
+
+Crie um servidor com Node.js e Express.js:
+
+const express = require('express');
+const mysql = require('mysql');
+const cors = require('cors'); // Permite requisições do frontend
+
+const app = express();
+app.use(cors());
+app.use(express.json()); // Para receber dados do frontend
+
+// Conexão com o banco de dados MySQL
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'seu_usuario',
+  password: 'sua_senha',
+  database: 'biblia_db'
+});
+
+db.connect(err => {
+  if (err) {
+    console.error('Erro ao conectar ao banco de dados: ', err);
+  } else {
+    console.log('Conectado ao banco de dados com sucesso!');
+  }
+});
+
+// Rotas da API
+app.get('/api/livros', (req, res) => {
+  db.query('SELECT * FROM livros', (err, result) => {
+    if (err) {
+      res.status(500).send('Erro ao buscar livros');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get('/api/versiculo/:livro/:capitulo/:versiculo', (req, res) => {
+  const { livro, capitulo, versiculo } = req.params;
+  const query = 'SELECT texto FROM versiculos WHERE livro_id = ? AND capitulo_id = ? AND numero = ?';
+  db.query(query, [livro, capitulo, versiculo], (err, result) => {
+    if (err) {
+      res.status(500).send('Erro ao buscar versículo');
+    } else if (result.length === 0) {
+      res.status(404).send('Versículo não encontrado');
+    } else {
+      res.json({ texto: result[0].texto });
+    }
+  });
+});
+
+// ... (Outras rotas para salvar marcadores, gerar URLs de compartilhamento, etc.)
+
+app.listen(3000, () => {
+  console.log('Servidor iniciado em http://localhost:3000');
+});
+content_copy
+Use code with caution.
+Js
+
+5. Conecte o Frontend ao Backend:
+
+Requisições AJAX: No seu JavaScript, faça requisições AJAX para as rotas da API do seu backend para buscar os livros, capítulos, versículos, salvar marcadores e gerar URLs de compartilhamento.
+
+Utilize Fetch API ou XMLHttpRequest:
+
+fetch('http://localhost:3000/api/livros')
+  .then(response => response.json())
+  .then(livros => {
+    // ...
+  })
+  .catch(error => {
+    // ...
+  });
+content_copy
+Use code with caution.
+Js
+
+6. Autenticação e Segurança:
+
+Implemente a Autenticação: Utilizando JWT, bcrypt e middleware para proteger suas rotas da API.
+
+Validação de Dados: Utilize express-validator para validar os dados recebidos do frontend.
+
+7. Teste Seu Aplicativo:
+
+Utilize o navegador para testar a funcionalidade do frontend.
+
+Utilize ferramentas como curl ou Postman para testar o backend.
+
+Utilize Jest para escrever testes unitários.
+
+Observações Importantes:
+
+Banco de Dados: Popule seu banco de dados MySQL com os dados da Bíblia.
+
+Design Responsivo: Utilize CSS para criar uma interface responsiva que se adapta a diferentes dispositivos.
+
+Tratamento de Erros: Implemente mecanismos para lidar com erros e exceções no frontend e no backend.
+
+Documentação: Documente seu código para facilitar a manutenção no futuro.
+
+Dicas Extras:
+
+Utilize Frameworks: Explore outros frameworks para facilitar o desenvolvimento do seu aplicativo, como:
+
+React: Para frontend
+
+Angular: Para frontend
+
+Vue.js: Para frontend
+
+Express.js: Para backend
+
+Recursos: Existem muitos recursos online que podem te ajudar, como:
+
+Documentação HTML: https://developer.mozilla.org/pt-BR/docs/Web/HTML
+
+Documentação CSS: https://developer.mozilla.org/pt-BR/docs/Web/CSS
+
+Documentação JavaScript: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
+
+Documentação Node.js: https://nodejs.org/en/docs/
+
+Documentação Express.js: https://expressjs.com/en/4x/api.html
+
+Documentação MySQL: https://dev.mysql.com/doc/
+
+Lembre-se:
+
+Este é apenas um guia básico para te ajudar a começar.
+
+Dedicar tempo para estudar os conceitos de desenvolvimento web e as tecnologias envolvidas é crucial para criar um aplicativo de alta qualidade.
+
+Divida o projeto em partes menores e vá construindo aos poucos.
+
+Com dedicação e estudo, você será capaz de construir um aplicativo da Bíblia funcional e que seus usuários vão adorar!
