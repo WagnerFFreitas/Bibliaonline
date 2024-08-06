@@ -1,358 +1,222 @@
-/* Estilos para o corpo da página */
+/* style.css */
+
+/* Configura o corpo da pagina principal */ 
 body {
-    /* Define a cor de fundo do corpo da página */
-    background-color: #181818; 
-    /* Define a cor do texto do corpo da página */
-    color: #fff; 
-    /* Define a fonte padrão do corpo da página */
-    font-family: sans-serif; 
-    /* Remove as margens padrão do corpo da página */
-    margin: 0; 
-    /* Remove os espaçamentos internos do corpo da página */
-    padding: 0; 
+    background-color: #181818;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+    /* Remover display: flex */
+    width: 100%;
+    overflow-x: hidden; /
 }
 
-/* Estilos para o cabeçalho da página */
+/*header {
+    background-color: #282828;
+    padding: 20px;
+    width: 100%;
+    /* Remover display: flex
+}*/
+/*header {
+    background-color: #282828;
+    padding: 20px;
+    width: 100%;
+    position: relative; /* Adiciona position: relative 
+}*/
+
+/* Configura o diâmetro da barra do titulo */
 header {
-    /* Define a cor de fundo do cabeçalho */
-    background-color: #282828; 
-    /* Define espaçamento interno (padding) para o cabeçalho */
-    padding: 15px 0; 
-    /* Define o alinhamento dos elementos dentro do cabeçalho */
-    display: flex; 
-    /* Distribui os elementos horizontalmente, com espaço entre eles */
-    justify-content: space-between; 
-    /* Centraliza verticalmente os elementos */
-    align-items: center; 
+    background-color: #282828;
+    padding: 20px;
+    width: 100%;
+    position: relative; /* Adiciona position: relative */
+    height: 62px; /* Define a altura do header */
 }
 
-/* Estilos para o título (h1) do cabeçalho */
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+/*.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}*/
+
 h1 {
-    /* Define o tamanho da fonte do título */
-    font-size: 2.5em; 
-    /* Remove as margens padrão do título */
-    margin: 0; 
-    /* Define o espaçamento à esquerda do título */
-    margin-left: 20px; 
+    margin: 0;
 }
 
-/* Estilos para a barra de pesquisa */
-.search-bar {
-    /* Define o alinhamento dos elementos dentro da barra de pesquisa */
-    display: flex; 
-    /* Centraliza verticalmente os elementos */
-    align-items: center; 
-    /* Define o espaçamento à direita da barra de pesquisa */
-    margin-right: 20px; 
+/* Configura a barra de menu superior*/
+.header-bottom {
+    background-color: #383838;
+    padding: 15px 20px;
+    display: flex;
+    /*justify-content: space-between;*/
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    /*height: 40px; /* Adicione a propriedade height */
+    overflow-x: hidden; /* Ocultar o conteúdo que excede a largura da tela */
+    margin-top: 46px; /* Desce o elemento 20 pixels */
+    margin-left: -20px; /* Desloca o elemento 50 pixels para a direita */
 }
 
-/* Estilos para o menu de seleção de livro (select) da barra de pesquisa */
-.search-select {
-    /* Define o espaçamento interno (padding) do menu */
-    padding: 8px; 
-    /* Define a borda do menu */
-    border: 1px solid #fff; 
-    /* Arredonda as bordas do menu */
-    border-radius: 5px; 
-    /* Define o tamanho da fonte do menu */
-    font-size: 16px; 
-    /* Define o espaçamento à direita do menu */
-    margin-right: 10px; 
-    /* Define a cor de fundo do menu */
-    background-color: #282828; 
-    /* Define a cor do texto do menu */
-    color: #fff; 
-    /* Remove a seta padrão do menu */
-    appearance: none; 
-}
 
-/* Estilos específicos para o navegador Internet Explorer */
-.search-select::-ms-expand {
-    /* Esconde a seta do menu para o Internet Explorer */
-    display: none; 
-}
-
-/* Estilos para o campo de entrada de texto da barra de pesquisa */
-.search-bar input {
-    /* Define o espaçamento interno (padding) do campo */
-    padding: 8px; 
-    /* Define a borda do campo */
-    border: 1px solid #fff; 
-    /* Arredonda as bordas do campo */
-    border-radius: 5px; 
-    /* Define o tamanho da fonte do campo */
-    font-size: 16px; 
-    /* Define o espaçamento à direita do campo */
-    margin-right: 10px; 
-    /* Define a cor de fundo do campo */
-    background-color: #282828; 
-    /* Define a cor do texto do campo */
-    color: #fff; 
-}
-
-/* Estilos para o botão de busca da barra de pesquisa */
-.search-bar button {
-    /* Define o espaçamento interno (padding) do botão */
-    padding: 8px 15px; 
-    /* Define a cor de fundo do botão */
-    background-color: #4CAF50; 
-    /* Define a cor do texto do botão */
-    color: #fff; 
-    /* Remove a borda do botão */
-    border: none; 
-    /* Arredonda as bordas do botão */
-    border-radius: 5px; 
-    /* Define o cursor do mouse ao passar sobre o botão */
-    cursor: pointer; 
-}
-
-/* Estilos para a barra de navegação */
-nav {
-    /* Define a cor de fundo da barra de navegação */
-    background-color: #383838; 
-    /* Define espaçamento interno (padding) para a barra de navegação */
-    padding: 10px 0; 
-    /* Define o alinhamento do texto na barra de navegação */
-    text-align: center; 
-    height: 50px;
-}
-
-/* Estilos para a lista de itens da barra de navegação */
 nav ul {
-    /* Remove os marcadores da lista */
-    list-style: none; 
-    /* Remove as margens padrão da lista */
-    margin: 0; 
-    /* Remove os espaçamentos internos da lista */
-    padding: 0; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;  /* Ajuste a largura para 100% */
 }
 
-/* Estilos para cada item da lista de navegação */
+/* Configura o espaçamento das opções do menu superior */
 nav li {
-    /* Define o alinhamento dos itens da lista */
-    display: inline-block; 
-    /* Define o espaçamento entre os itens da lista */
-    margin: 0 10px; 
+    margin-right: 10px;
 }
 
-/* Estilos para os links da barra de navegação */
+/* Configura a cor do texto das opções do menu superior */
 nav a {
-    /* Define a cor do texto dos links */
-    color: #fff; 
-    /* Remove a decoração padrão dos links */
-    text-decoration: none; 
+    text-decoration: none;
+    color: #fff;
 }
 
-/* Estilos para a área principal da página */
+.search-bar {
+    display: flex;
+    flex-shrink: 0; 
+}
+
+.search-bar select {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #383838;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #383838;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 70px;
+}
+
+/*main {
+    width: 100%;
+    padding-right: 250px;
+    /* Compensar a largura do aside 
+}*/
+
+/* style.css */
+
+/* ... (resto do CSS) ... */
+
 main {
-    /* Define o alinhamento dos elementos dentro da área principal */
-    display: flex; 
-    /* Define espaçamento interno (padding) para a área principal */
-    padding: 20px; 
+    width: 100%;
+    padding-right: 250px;
+    /* Compensar a largura do aside */
+    height: calc(100vh - 160px);
+    /* Ajustar a altura para o main */
+    overflow-y: auto;
+    /* Adicionar barra de rolagem */
 }
 
-/* Estilos para a barra lateral */
-.sidebar {
-    /* Define a posição da barra lateral como fixa na tela */
-    position: fixed; 
-    /* Define a distância do topo da página */
-    top: 145px;  
-    /* Define a distância da esquerda da página */
-    left: 20px; 
-    /* Define a largura da barra lateral */
-    width: 180px; 
-    /* Define a cor de fundo da barra lateral */
-    background-color: #181818; 
-    /* Define espaçamento interno (padding) para a barra lateral */
-    padding: 10px; 
-/*    padding-top: 45px;*/
-/*    min-height: 1000vh */
+/* Configura o menu lateral */
+aside {
+    width: 250px;
+    background-color: #383838;
+    padding: 20px;
+    position: fixed;
+    /* Fixar o aside */
+    top: 150px;
+    /* Posicionar o aside abaixo do header */
+    left: 0;
+    bottom: 0;
+    /* Ocultar a barra de rolagem do aside */
+    overflow-y: auto;
+    z-index: 1;
+    /* Priorizar o aside em relação ao section */
 }
 
-/* Estilos para o título da barra lateral */
-.sidebar h3 {
-    /* Remove a margem superior do título */
-    margin-top: 0; 
-    /* Define a cor do título da barra lateral */
-    color: #f5f3f3; 
+/* ... (resto do CSS) ... */
+
+aside h2 {
+    margin-top: 0;
 }
 
-/* Estilos para a lista de livros da barra lateral */
-.sidebar ul {
-    /* Remove os marcadores da lista */
-    list-style: none; 
-    /* Remove as margens padrão da lista */
-    margin: 0; 
-    /* Remove os espaçamentos internos da lista */
-    padding: 0; 
+aside ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-/* Estilos para cada item da lista de livros */
-.sidebar li {
-    /* Define o espaçamento inferior do item da lista */
-    margin-bottom: 10px; 
+aside li {
+    padding: 10px 0;
+    border-bottom: 1px solid #484848;
 }
 
-/* Estilos para os links dos livros na barra lateral */
-.sidebar a {
-    /* Remove a decoração padrão dos links */
-    text-decoration: none; 
-    /* Define a cor do texto dos links */
-    color: #fcf9f9; 
+/*section {
+    padding: 20px;
+    /* Remover height: 100vh *
+}*/
+
+section {
+    padding: 20px;
+    height: calc(100vh - 130px);
+    /* Ajustar a altura do section */
+    overflow-y: auto;
+    /* Adicionar barra de rolagem */
 }
 
-/* Ajusta a altura da barra lateral */
-.sidebar-content {
-    /*Habilita a rolagem vertical dentro da barra lateral*/
-    overflow-y: auto; 
-    /* Define a altura fixa da barra lateral*/
-    height: 650px;
-}
 
-/* Estilos para o conteúdo principal da página */
-.content {
-    /* Define a flexibilidade do conteúdo principal */
-    flex-grow: 1; 
-    /* Define espaçamento interno (padding) para o conteúdo principal */
-    padding: 20px; 
-    /* Define o espaçamento à esquerda do conteúdo principal */
-    padding-left: 220px; 
-}
+/*footer {
+    background-color: #282828;
+    text-align: center;
+    padding: 10px;
+    width: calc(100% - 250px);
+    /* Ajustar a largura do footer 
+    position: fixed;
+    bottom: 0;
+    left: 250px;
+    /* Posicionar o footer abaixo do aside
+    z-index: 1;
+    /* Priorizar o footer em relação ao section 
+}*/
 
-/* Estilos para a lista de capítulos */
-.book-list {
-    /* Define a largura da lista de capítulos */
-    width: 120px; 
-    /* Define o espaçamento à direita da lista de capítulos */
-    margin-right: 120px; 
-}
 
-/* Estilos para o título da lista de capítulos */
-.book-list h2 {
-    /* Remove a margem superior do título */
-    margin-top: 0; 
-    /* Define o espaçamento inferior do título */
-    margin-bottom: 10px; 
-}
-
-/* Estilos para a lista de capítulos */
-.book-list ul {
-    /* Remove os marcadores da lista */
-    list-style: none; 
-    /* Remove os espaçamentos internos da lista */
-    padding: 0; 
-}
-
-/* Estilos para cada item da lista de capítulos */
-.book-list li {
-    /* Define o espaçamento interno (padding) do item */
-    padding: 5px 0; 
-    /* Define o alinhamento dos elementos dentro do item */
-    display: flex; 
-    /* Centraliza verticalmente os elementos */
-    align-items: center; 
-}
-
-/* Estilos para os links dos capítulos */
-.book-list a {
-    /* Define a cor do texto dos links */
-    color: #fff; 
-    /* Remove a decoração padrão dos links */
-    text-decoration: none; 
-    /* Define o espaçamento à direita dos links */
-    margin-right: 10px; 
-}
-
-/* Estilos para os ícones dos capítulos */
-.book-list i {
-    /* Define o tamanho da fonte do ícone */
-    font-size: 1.2em; 
-}
-
-/* Estilos para a área de capítulos */
-.chapters {
-    /* Define a flexibilidade da área de capítulos */
-    flex: 1; 
-    /* Define a largura da área de capítulos */
-    width: 100px; 
-    /* Define a largura mínima da área de capítulos */
-    min-width: 1000px; 
-    /* Define a forma como o espaçamento interno é calculado */
-    box-sizing: border-box; 
-}
-
-/* Estilos para a grade de capítulos */
-.chapter-grid {
-    /* Define a disposição dos capítulos como grade */
-    display: grid; 
-    /* Define o número de colunas da grade */
-    grid-template-columns: repeat(10, 1fr); 
-    /* Define o espaçamento entre os capítulos na grade */
-    gap: 10px; 
-}
-
-/* Estilos para cada capítulo */
-.chapter {
-    /* Define a cor de fundo do capítulo */
-    background-color: #282828; 
-    /* Define a borda do capítulo */
-    border: 1px solid #fff; 
-    /* Arredonda as bordas do capítulo */
-    border-radius: 5px; 
-    /* Define o espaçamento interno (padding) do capítulo */
-    padding: 10px; 
-    /* Define o alinhamento do texto do capítulo */
-    text-align: center; 
-    /* Define o cursor do mouse ao passar sobre o capítulo */
-    cursor: pointer; 
-    /* Define uma transição suave para a mudança de cor de fundo */
-    transition: background-color 0.3s; 
-    /* Define a cor do texto do capítulo */
-    color: #fff; 
-}
-
-/* Estilos para o capítulo ao passar o mouse */
-.chapter:hover {
-    /* Define a cor de fundo do capítulo ao passar o mouse */
-    background-color: #383838; 
-}
-
-/* Estilos para o rodapé da página */
+/* Configura a barra no rodape da pagina */
 footer {
-    /* Define a cor de fundo do rodapé */
-    background-color: #383838; 
-    /* Define espaçamento interno (padding) para o rodapé */
-    padding: 10px 0; 
-    /* Define o alinhamento do texto no rodapé */
-    text-align: center; 
-    /* Define a posição do rodapé como fixa na tela */
-    position: fixed; 
-    /* Define a distância do fundo da página */
-    bottom: 0; 
-    /* Define a largura do rodapé */
-    width: 100%; 
-}
-
-/* Estilos para o texto do rodapé */
-footer p {
-    /* Remove a margem padrão do texto */
-    margin: 0; 
-}
-
-/* Estilos para a lista de capítulos */
-.chapter-list {
-    /* Define a disposição dos capítulos como coluna */
-    display: flex; 
-    /* Define a direção da disposição como vertical */
-    flex-direction: column; 
-    /* Define o espaçamento entre os capítulos */
-    gap: 10px; 
-    /* Define o espaçamento à esquerda da lista de capítulos */
-    margin-left: 2px; 
-}
-
-/* Estilos para cada item da lista de livros */
-.book-item {
-    /* Define o cursor do mouse ao passar sobre o item */
-    cursor: pointer; 
+    background-color: #282828;
+    text-align: center;
+    padding: 10px;
+    width: calc(100% - 250px);
+    /* Ajustar a largura do footer */
+    position: fixed;
+    bottom: 0;
+    left: 250px;
+    /* Posicionar o footer abaixo do aside */
+    z-index: 1;
+    /* Priorizar o footer em relação ao section */
+    height: 30px;
+    /* Ajustar a altura do footer */
 }

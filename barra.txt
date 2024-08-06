@@ -1,0 +1,30 @@
+nav {
+    background-color: #383838; 
+    padding: 18px; 
+    height: 10px;
+    display: flex; 
+    align-items: center; 
+    width: 100%;
+    justify-content: center; 
+}
+
+nav span { /* Estilos para a palavra "LIVROS" */
+    margin-right: 20px; /* Adiciona espaçamento à direita do "LIVROS" */
+}
+
+nav ul { /* Estilos para o menu de navegação */
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; /* Define o menu como um flex container */
+    align-items: center; /* Centraliza os itens do menu verticalmente */
+}
+
+nav li { /* Estilos para cada item do menu */
+    margin: 0 10px; /* Adiciona espaçamento entre os itens do menu */
+}
+
+nav a { /* Estilos para os links do menu */
+    color: #fff; 
+    text-decoration: none;
+}
