@@ -1,18 +1,10 @@
-
-
-
-/* Estilos para o corpo da página */
 body {
-    /* Define a cor de fundo do corpo da página */
     background-color: #181818; 
-    /* Define a cor do texto do corpo da página */
     color: #fff; 
-    /* Define a fonte padrão do corpo da página */
     font-family: sans-serif; 
-    /* Remove as margens padrão do corpo da página */
     margin: 0; 
-    /* Remove os espaçamentos internos do corpo da página */
     padding: 0; 
+    overflow-x: hidden;
 }
 
 /* Estilos para o cabeçalho da página */
@@ -122,20 +114,7 @@ nav {
     align-items: center; /* Centraliza verticalmente os itens */
 }
 
-/*nav {
-    background-color: #383838; 
 
-    padding: 18px; 
-    text-align: center; 
-    height: 10px;
-    text-align: center;
-    width: 100%;
-    justify-content: center;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-}*/
-    
 
 /* Estilos para a lista de itens da barra de navegação */
 /* Estilos para a lista de itens do menu */
@@ -147,14 +126,6 @@ nav ul {
     align-items: center; /* Centraliza verticalmente os itens */
     gap: 20px; /* Adiciona espaçamento entre os itens */
 }
-
-/*nav ul {
-    list-style: none; 
-    margin: 50; 
-    padding: 0;
-    display: flex;
-    align-items: center;
-}*/
 
 /* Estilos para cada item da lista de navegação */
 nav li {
@@ -181,8 +152,8 @@ nav a {
 /* Configura o titulo da barra lateral */
 h3 {
     font-size: 1.2em; 
-    margin: 13px; 
-    margin-left: 15px; 
+    margin: 8px; 
+    margin-left: 2px; 
 }
 
 .menu {
@@ -192,13 +163,8 @@ h3 {
     font-size: 16px; 
     margin-right: 755px; 
     color: #fff; 
+    
 }
-
-/*nav ul li {
-    margin-left: 10px; /* Adiciona espaçamento à esquerda 
-}*/
-
-/* --- */
 
 /* Estilos para a área principal da página */
 main {
@@ -206,22 +172,21 @@ main {
     display: flex; 
     /* Define espaçamento interno (padding) para a área principal */
     padding: 20px; 
+    
 }
 
 /* Estilos para a barra lateral */
 .sidebar {
-    /* Define a posição da barra lateral como fixa na tela */
-    position: fixed; 
-    /* Define a distância do topo da página */
+    position: fixed;
     top: 147px;  
-    /* Define a distância da esquerda da página */
     left: 20px; 
-    /* Define a largura da barra lateral */
     width: 180px; 
-    /* Define a cor de fundo da barra lateral */
     background-color: #181818; 
-    /* Define espaçamento interno (padding) para a barra lateral */
     padding: 10px; 
+    bottom: 10;
+    overflow-y: auto;
+    z-index: 1;
+    height: 710px;
 /*    padding-top: 45px;*/
 /*    min-height: 1000vh */
 }

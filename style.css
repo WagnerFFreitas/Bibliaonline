@@ -1,38 +1,25 @@
-/* style.css */
+
+
 
 /* Configura o corpo da pagina principal */ 
 body {
     background-color: #181818;
     color: #fff;
-    font-family: sans-serif;
+    font-family: sans-serif; 
     margin: 0;
     /* Remover display: flex */
     width: 100%;
-    overflow-x: hidden; /
+    overflow-x: hidden;
 }
-
-/*header {
-    background-color: #282828;
-    padding: 20px;
-    width: 100%;
-    /* Remover display: flex
-}*/
-/*header {
-    background-color: #282828;
-    padding: 20px;
-    width: 100%;
-    position: relative; /* Adiciona position: relative 
-}*/
 
 /* Configura o diâmetro da barra do titulo */
 header {
     background-color: #282828;
-    padding: 20px;
+    padding: 25px;
     width: 100%;
-    position: relative; /* Adiciona position: relative */
-    height: 62px; /* Define a altura do header */
+    position: relative;
+    height: 55px;
 }
-
 
 .header-top {
     display: flex;
@@ -41,45 +28,32 @@ header {
     width: 100%;
 }
 
-
-/*.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}*/
-
+/* Configura o tamanho da fonte e posição do titulo */
 h1 {
     margin: 0;
+    font-size: 2.5em; 
 }
 
-/* Configura a barra de menu superior*/
+/* Configura a barra de menu superior e o texto*/
 .header-bottom {
     background-color: #383838;
-    padding: 15px 20px;
+    padding: 13px;
     display: flex;
-    /*justify-content: space-between;*/
-    justify-content: flex-start;
-    align-items: center;
     width: 100%;
-    /*height: 40px; /* Adicione a propriedade height */
-    overflow-x: hidden; /* Ocultar o conteúdo que excede a largura da tela */
-    margin-top: 46px; /* Desce o elemento 20 pixels */
-    margin-left: -20px; /* Desloca o elemento 50 pixels para a direita */
+    overflow-x: hidden;
+    margin-top: 28px;
+    margin-left: -20px;
+    justify-content: center; 
 }
 
-
 nav ul {
-    list-style: none;
     margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100%;  /* Ajuste a largura para 100% */
 }
 
 /* Configura o espaçamento das opções do menu superior */
 nav li {
-    margin-right: 10px;
+    margin-right: 20px;
+    display: inline-block;
 }
 
 /* Configura a cor do texto das opções do menu superior */
@@ -121,16 +95,6 @@ nav a {
     margin-right: 70px;
 }
 
-/*main {
-    width: 100%;
-    padding-right: 250px;
-    /* Compensar a largura do aside 
-}*/
-
-/* style.css */
-
-/* ... (resto do CSS) ... */
-
 main {
     width: 100%;
     padding-right: 250px;
@@ -142,81 +106,132 @@ main {
 }
 
 /* Configura o menu lateral */
-aside {
-    width: 250px;
-    background-color: #383838;
-    padding: 20px;
+/*aside {
+    width: 210px;
+    background-color: #181818;
+    padding: 10px;
     position: fixed;
-    /* Fixar o aside */
-    top: 150px;
-    /* Posicionar o aside abaixo do header */
+    top: 143px;
     left: 0;
     bottom: 0;
-    /* Ocultar a barra de rolagem do aside */
     overflow-y: auto;
     z-index: 1;
-    /* Priorizar o aside em relação ao section */
-}
-
-/* ... (resto do CSS) ... */
-
-aside h2 {
-    margin-top: 0;
-}
-
-aside ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-aside li {
-    padding: 10px 0;
-    border-bottom: 1px solid #484848;
-}
-
-/*section {
-    padding: 20px;
-    /* Remover height: 100vh *
+    height: 730px;
 }*/
+
+/* Configura o menu lateral */
+.sidebar {
+    position: fixed;
+    top: 143px;  
+    left: 0; 
+    width: 210px; 
+    background-color: #181818; 
+    padding: 10px; 
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 1;
+    height: 730px;
+}
+
+
+/*aside h2 {
+    margin-top: 0px;
+    margin: 0px;
+    margin-left: 14px; 
+}*/
+.sidebar h2 {
+    margin-top: 0px;
+    margin: 0px;
+    margin-left: 14px; 
+}
+
+/*aside ul {
+    list-style: none;
+    margin: 15px;
+    padding: 0;
+}*/
+/* Estilos para a lista de livros da barra lateral */
+.sidebar ul {
+    list-style: none; 
+    margin: 15px; 
+    padding: 0; 
+}
+
+/*aside li {
+    padding: 6px 0px;
+}*/
+
+/* Configura o espaçamento interior dos itens da lista na barra lateral */
+.sidebar li {
+    /* Define o espaçamento inferior do item da lista */
+    margin-bottom: 10px; 
+}
+
+.sidebar a {
+    /* Remove a decoração padrão dos links */
+    text-decoration: none; 
+    /* Define a cor do texto dos links */
+    color: #fcf9f9; 
+}
 
 section {
     padding: 20px;
     height: calc(100vh - 130px);
-    /* Ajustar a altura do section */
     overflow-y: auto;
-    /* Adicionar barra de rolagem */
 }
 
+/* Configura a area e o tamanho dos botões de capitulo de cada livro */
+.chapters {
+    flex: 1; 
+    width: 100px; 
+    min-width: 1000px; 
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding-top: 30px;
+    
+}
 
-/*footer {
-    background-color: #282828;
-    text-align: center;
-    padding: 10px;
-    width: calc(100% - 250px);
-    /* Ajustar a largura do footer 
-    position: fixed;
-    bottom: 0;
-    left: 250px;
-    /* Posicionar o footer abaixo do aside
-    z-index: 1;
-    /* Priorizar o footer em relação ao section 
-}*/
+/* Configura quantas colunas sera exibida na pagina principal */
+.chapter-grid {
+    display: grid; 
+    grid-template-columns: repeat(10, 1fr); 
+    gap: 10px; 
+}
 
+/* Configura a cor do botões */
+.chapter {
+    background-color: #282828; 
+    border: 1px solid #fff; 
+    border-radius: 15px; 
+    padding: 10px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    color: #fff;
+}
 
-/* Configura a barra no rodape da pagina */
+/* Configura a cor dos botões ao passar o mouse */
+.chapter:hover {
+    background-color: #319c10;
+}
+
+/* Configura a barra no rodapé da pagina */
 footer {
-    background-color: #282828;
+    background-color: #383838;
     text-align: center;
-    padding: 10px;
-    width: calc(100% - 250px);
-    /* Ajustar a largura do footer */
+    padding: fixed;
+    width: 100%;
     position: fixed;
     bottom: 0;
-    left: 250px;
-    /* Posicionar o footer abaixo do aside */
+    left: 0px;
     z-index: 1;
-    /* Priorizar o footer em relação ao section */
     height: 30px;
-    /* Ajustar a altura do footer */
 }
+
+/* Configura o tamanho da fonte e a altura da barra inferior da pagina */
+footer p {
+    font-size: 16px; /* Define o tamanho da fonte como 16 pixels */
+    line-height: 0.2; /* Define a altura da linha como 1.5 vezes o tamanho da fonte */
+}
+
+
