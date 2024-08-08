@@ -1,6 +1,5 @@
 
 
-
 /* Configura o corpo da pagina principal */ 
 body {
     background-color: #181818;
@@ -15,16 +14,17 @@ body {
 header {
     background-color: #282828;
     padding: 25px;
-    width: 100%;
+    width: 97%;
     position: relative;
     height: 55px;
 }
 
+/* Configura a posição da busca */
 .header-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    /*align-items: center;*/
+    /*width: 100%;*/
 }
 
 /* Configura o tamanho da fonte e posição do titulo */
@@ -38,16 +38,23 @@ h1 {
     background-color: #383838;
     padding: 13px;
     display: flex;
-    width: 110%;
-    overflow-x: hidden;
+    width: 101.2%;
+    /*overflow-x: hidden;*/
     margin-top: 28px;
     margin-left: -23px;
     /*justify-content: center;*/
+
+    
+    
+}
+
+.header-bottom nav ul {
+    margin-left: 800px;
 }
 
 nav ul {
     margin: 0;
-    margin-left: 640px;
+
 }
 
 /* Configura o espaçamento das opções do menu superior */
@@ -95,6 +102,7 @@ nav a {
     margin-right: 70px;
 }
 
+/* Configura o tamanho da pagina principal */
 main {
     width: 100%;
     padding-right: 250px;
@@ -116,6 +124,7 @@ main {
     height: 730px;
 }
 
+/* Configura o titulo da barra lateral */
 .sidebar h2 {
     margin-top: 0px;
     margin: 0px;
@@ -131,7 +140,6 @@ main {
 
 /* Configura o espaçamento interior dos itens da lista na barra lateral */
 .sidebar li {
-    /* Define o espaçamento inferior do item da lista */
     margin-bottom: 10px; 
 }
 
@@ -152,7 +160,7 @@ section {
     width: 100px; 
     min-width: 1000px; 
     box-sizing: border-box;
-    margin: 0 auto;
+    margin: 0 530px;
     padding-top: 30px;
     
 }
