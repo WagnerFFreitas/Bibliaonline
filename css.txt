@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bíblia Sagrada</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Conteúdo da página -->
+    <header>
+        <div class="header-top">
+            <h1>Bíblia Sagrada</h1>
+            <div class="search-bar">
+                <select>
+                    <option value="livro">Livro</option>
+                    <!-- Adicione mais opções de filtro aqui -->
+                </select>
+                <input type="text" placeholder="Digite o termo de busca">
+                <button>Buscar</button>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Livros</a></li>
+                    <li><a href="#">Planos de Leitura</a></li>
+                    <li><a href="#">Baixar</a></li>
+                    <li><a href="#">Perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <h2><i>LIVROS</i></h2>
+                <ul>
+                    <!-- Lista de livros -->
+                </ul>
+            </div>
+        </aside>
+        <section>
+            <div id="chapter-content"></div>
+            <!-- Conteúdo principal da página -->
+        </section>
+    </main>
+
+    <footer>
+        <p>© Bíblia Sagrada 2024</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+body {
+    background-color: #181818;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 25px;
+    background-color: #282828;
+}
+
+.header-bottom {
+    background-color: #383838;
+    padding: 13px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.sidebar {
+    position: fixed;
+    top: 143px;
+    left: 0;
+    width: 210px;
+    background-color: #181818;
+    padding: 10px;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 1;
+    height: 730px;
+}
+
+.sidebar h2 {
+    margin-top: 0px;
+    margin: 0px;
+    margin-left: 14px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 15px;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fcf9f9;
+}
+
+section {
+    padding: 20px;
+    height: calc(100vh - 130px);
+    overflow-y: auto;
+}
+
+.chapters {
+    flex: 1;
+    width: 100px;
+    min-width: 1000px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+}
+
+.chapter {
+    background-color: #282828;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #fff;
+}
+
+.chapter:hover {
+    background-color: #319c10;
+}
+
+footer {
+    background-color: #383838;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 30px;
+}
+
+footer p {
+    font-size: 16px;
+    line-height: 0.2;
+}
+
+/* Adicione essas classes do Bootstrap para tornar a página responsiva */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-md-4 {
+    width: 33.33%;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        height: auto;
+    }
+    .col-md-4 {
+        width: 100%;
+        padding: 10px;
+    }
+}
