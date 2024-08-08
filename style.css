@@ -7,9 +7,9 @@ body {
     color: #fff;
     font-family: sans-serif; 
     margin: 0;
-    /* Remover display: flex */
     width: 100%;
     overflow-x: hidden;
+    max-width: 1805px;
 }
 
 /* Configura o diâmetro da barra do titulo */
@@ -39,11 +39,12 @@ h1 {
     background-color: #383838;
     padding: 13px;
     display: flex;
-    width: 100%;
-    overflow-x: hidden;
+    width: 110%;
+    /*overflow-x: hidden;*/
     margin-top: 28px;
-    margin-left: -20px;
-    justify-content: center; 
+    margin-left: -23px;
+    justify-content: center;
+    max-width: 1825px; 
 }
 
 nav ul {
@@ -101,7 +102,7 @@ main {
     /* Compensar a largura do aside */
     height: calc(100vh - 160px);
     /* Ajustar a altura para o main */
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     /* Adicionar barra de rolagem */
 }
 
